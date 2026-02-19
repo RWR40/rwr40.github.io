@@ -79,6 +79,23 @@
         border-top-right-radius: 16px;
       }
 
+      /* NEW (minimal): Video media for Open-Source Application cards */
+      .course-card-media{
+        width: 100%;
+        height: 250px;
+        border-top-left-radius: 16px;
+        border-top-right-radius: 16px;
+        overflow: hidden;
+        background: #000;
+      }
+      .course-card-video{
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: contain; /* keep full video visible */
+        background: #000;
+      }
+
       .pill{
         display: inline-block;
         padding: 6px 12px;
@@ -144,11 +161,10 @@
 
       /* Disable links (for "Coming soon") */
       .disabled-link{
-        pointer-events: none;      /* no click */
-        opacity: 0.55;             /* looks disabled */
-        cursor: not-allowed;       /* no hand cursor */
+        pointer-events: none;
+        opacity: 0.55;
+        cursor: not-allowed;
       }
-      /* prevent hover style changes on disabled buttons */
       a.btn.btn-primary.disabled-link:hover{
         background-color: #6D28D2 !important;
         border-color: #6D28D2 !important;
@@ -214,10 +230,10 @@
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item"><a class="nav-link active" href="#top">Course Hub</a></li>
             <li class="nav-item"><a class="nav-link" href="/TrafficSimulationforPlanningApplications/">Traffic Simulation</a></li>
-
-            <!-- MODIFIED: enable Digital Twins nav link -->
             <li class="nav-item"><a class="nav-link" href="/DigitalTwinsforSmartCities/">Digital Twins</a></li>
-            <!-- /MODIFIED -->
+
+            <!-- NEW (minimal): Apps nav link -->
+            <li class="nav-item"><a class="nav-link" href="#apps">Open-Source Apps</a></li>
 
             <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
             <li class="nav-item">
@@ -287,8 +303,8 @@
                   </div>
 
                   <ul class="course-list">
-                    <li>Build foundational skills in traffic simulation modelling </li>
-                    <li>Create simulation models using open-source tools (SUMO, QGIS) </li>
+                    <li>Build foundational skills in traffic simulation modelling</li>
+                    <li>Create simulation models using open-source tools (SUMO, QGIS)</li>
                     <li>Use simulation for planning applications (signals, designs, etc)</li>
                     <li>Compare alternatives using delay and level of service metric</li>
                   </ul>
@@ -327,13 +343,12 @@
                   </div>
 
                   <ul class="course-list">
-                    <li>Data layer (Computer Vision): collect field traffic data from video </li>
-                    <li>Model layer (Simulation): build a digital traffic model in SUMO </li>
-                    <li>Service layer (Optimization): evaluate system performance </li>
-                    <li>User layer (Decision): choose the most effective strategy  </li>
+                    <li>Data layer (Computer Vision): collect field traffic data from video</li>
+                    <li>Model layer (Simulation): build a digital traffic model in SUMO</li>
+                    <li>Service layer (Optimization): evaluate system performance</li>
+                    <li>User layer (Decision): choose the most effective strategy</li>
                   </ul>
 
-                  <!-- MODIFIED: enable buttons -->
                   <div class="d-flex flex-wrap gap-2 mt-4">
                     <a class="btn btn-primary" href="/DigitalTwinsforSmartCities/">
                       Enter Course
@@ -342,11 +357,111 @@
                       View Outline
                     </a>
                   </div>
-                  <!-- /MODIFIED -->
                 </div>
               </div>
             </div>
           </div>
+
+          <!-- NEW (minimal): OPEN-SOURCE APPLICATION PICKER -->
+          <hr class="my-5">
+
+          <h2 id="apps" class="section-title h2 text-center mb-3">Choose an Open-Source Application</h2>
+          <p class="lead text-center text-muted mb-5" style="max-width: 860px; margin: 0 auto;">
+            Select an application to open the demo, documentation, and GitHub repository.
+          </p>
+
+          <div class="row g-4 align-items-stretch">
+            <!-- App 1 -->
+            <div class="col-lg-6">
+              <div class="card card-soft h-100 overflow-hidden">
+
+                <!-- Video (replace src with your real video file/link) -->
+                <div class="course-card-media">
+                  <video class="course-card-video" autoplay muted loop playsinline>
+                    <source src="assets/video/app1.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+
+                <div class="card-body p-4">
+                  <div class="d-flex flex-wrap gap-2 align-items-center mb-3">
+                    <span class="pill">App</span>
+                    <span class="badge badge-pill rounded-pill px-3 py-2">Open Source</span>
+                    <span class="badge badge-pill rounded-pill px-3 py-2">Python</span>
+                    <span class="badge badge-pill rounded-pill px-3 py-2">Workflow</span>
+                  </div>
+
+                  <div class="course-title">SimJamOptGUI</div>
+                  <div class="course-subtitle">
+                    A lightweight interface to run experiments, compare scenarios, and export results.
+                  </div>
+
+                  <ul class="course-list">
+                    <li>Run a full pipeline with repeatable settings</li>
+                    <li>Export outputs for plots / reports</li>
+                    <li>Designed for teaching + quick research iteration</li>
+                    <li>Works well with SUMO-based studies</li>
+                  </ul>
+
+                  <div class="d-flex flex-wrap gap-2 mt-4">
+                    <!-- Replace these links with your real app/docs/github pages -->
+                    <a class="btn btn-primary" href="#" target="_blank" rel="noopener noreferrer">
+                      Open App
+                    </a>
+                    <a class="btn btn-outline-primary" href="#" target="_blank" rel="noopener noreferrer">
+                      View on GitHub
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- App 2 -->
+            <div class="col-lg-6">
+              <div class="card card-soft h-100 overflow-hidden">
+
+                <!-- Video (replace src with your real video file/link) -->
+                <div class="course-card-media">
+                  <video class="course-card-video" autoplay muted loop playsinline>
+                    <source src="assets/video/app2.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+
+                <div class="card-body p-4">
+                  <div class="d-flex flex-wrap gap-2 align-items-center mb-3">
+                    <span class="pill">App</span>
+                    <span class="badge badge-pill rounded-pill px-3 py-2">Computer Vision</span>
+                    <span class="badge badge-pill rounded-pill px-3 py-2">Data</span>
+                    <span class="badge badge-pill rounded-pill px-3 py-2">Toolkit</span>
+                  </div>
+
+                  <div class="course-title">YOLO Trainer + Mobility Analytics</div>
+                  <div class="course-subtitle">
+                    Train detectors, validate results, and generate mobility KPIs from video.
+                  </div>
+
+                  <ul class="course-list">
+                    <li>Annotate / train / evaluate (mAP, precision, recall)</li>
+                    <li>Track objects and compute counts, speeds, trajectories</li>
+                    <li>Export CSV summaries for planning studies</li>
+                    <li>Connect outputs to simulation & digital twin workflows</li>
+                  </ul>
+
+                  <div class="d-flex flex-wrap gap-2 mt-4">
+                    <!-- Replace these links with your real app/docs/github pages -->
+                    <a class="btn btn-primary" href="#" target="_blank" rel="noopener noreferrer">
+                      Open App
+                    </a>
+                    <a class="btn btn-outline-primary" href="#" target="_blank" rel="noopener noreferrer">
+                      View on GitHub
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /NEW -->
 
           <!-- HELP STRIP -->
           <div class="card card-soft help-strip mt-5">
@@ -412,12 +527,14 @@
             <a href="/TrafficSimulationforPlanningApplications/" class="footer-link">
               Traffic Simulation for Planning Applications (RWR4015)
             </a>
-
-            <!-- MODIFIED: enable Digital Twins footer link -->
             <a href="/DigitalTwinsforSmartCities/" class="footer-link">
               Digital Twins for Smart Cities (RWR4013)
             </a>
-            <!-- /MODIFIED -->
+
+            <!-- NEW (minimal): Apps shortcut -->
+            <a href="#apps" class="footer-link">
+              Open-Source Applications
+            </a>
 
             <a href="https://discord.gg/8kPaECVzJY" target="_blank" rel="noopener noreferrer" class="footer-link">
               Discord Community
