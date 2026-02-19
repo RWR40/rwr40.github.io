@@ -70,30 +70,13 @@
         border-radius: 16px;
       }
 
-      /* Course card */
+      /* Course card (and App card image) */
       .course-card-img{
         width: 100%;
         height: 250px;
         object-fit: cover;
         border-top-left-radius: 16px;
         border-top-right-radius: 16px;
-      }
-
-      /* NEW (minimal): Video media for Open-Source Application cards */
-      .course-card-media{
-        width: 100%;
-        height: 250px;
-        border-top-left-radius: 16px;
-        border-top-right-radius: 16px;
-        overflow: hidden;
-        background: #000;
-      }
-      .course-card-video{
-        width: 100%;
-        height: 100%;
-        display: block;
-        object-fit: contain; /* keep full video visible */
-        background: #000;
       }
 
       .pill{
@@ -232,7 +215,7 @@
             <li class="nav-item"><a class="nav-link" href="/TrafficSimulationforPlanningApplications/">Traffic Simulation</a></li>
             <li class="nav-item"><a class="nav-link" href="/DigitalTwinsforSmartCities/">Digital Twins</a></li>
 
-            <!-- NEW (minimal): Apps nav link -->
+            <!-- Apps nav link -->
             <li class="nav-item"><a class="nav-link" href="#apps">Open-Source Apps</a></li>
 
             <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
@@ -362,12 +345,12 @@
             </div>
           </div>
 
-          <!-- NEW (minimal): OPEN-SOURCE APPLICATION PICKER -->
+          <!-- OPEN-SOURCE APPLICATION PICKER -->
           <hr class="my-5">
 
           <h2 id="apps" class="section-title h2 text-center mb-3">Choose an Open-Source Application</h2>
           <p class="lead text-center text-muted mb-5" style="max-width: 860px; margin: 0 auto;">
-            Select an application to open the demo, documentation, and GitHub repository.
+            Select an application to watch a short demo and open the GitHub repository.
           </p>
 
           <div class="row g-4 align-items-stretch">
@@ -375,40 +358,45 @@
             <div class="col-lg-6">
               <div class="card card-soft h-100 overflow-hidden">
 
-                <!-- Video (replace src with your real video file/link) -->
-                <div class="course-card-media">
-                  <video class="course-card-video" autoplay muted loop playsinline>
-                    <source src="assets/video/app1.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                  </video>
-                </div>
+                <!-- MODIFIED: Image instead of video -->
+                <img
+                  src="assets/img/sumo2unity-app.jpg"
+                  alt="SUMO2Unity open-source application"
+                  class="course-card-img">
 
                 <div class="card-body p-4">
+                  <!-- MODIFIED: Updated tags -->
                   <div class="d-flex flex-wrap gap-2 align-items-center mb-3">
                     <span class="pill">App</span>
-                    <span class="badge badge-pill rounded-pill px-3 py-2">Open Source</span>
-                    <span class="badge badge-pill rounded-pill px-3 py-2">Python</span>
-                    <span class="badge badge-pill rounded-pill px-3 py-2">Workflow</span>
+                    <span class="badge badge-pill rounded-pill px-3 py-2">SUMO ↔ Unity</span>
+                    <span class="badge badge-pill rounded-pill px-3 py-2">3D / VR</span>
+                    <span class="badge badge-pill rounded-pill px-3 py-2">Human-in-the-Loop</span>
                   </div>
 
                   <div class="course-title">SUMO2Unity</div>
                   <div class="course-subtitle">
-                   A 3D Enhanced Traffic Visualization and VR/Simulator Human in the Loop Simulation
+                    A 3D Enhanced Traffic Visualization and VR/Simulator Human in the Loop Simulation
                   </div>
 
                   <ul class="course-list">
-                    <li>Import complex road network from SUMO to Unity;</li>
+                    <li>Import complex road network from SUMO to Unity</li>
                     <li>Integrate SUMO and Unity</li>
-                    <li>Include free 3D models for roads, trees, building, traffic light</li>
-                    <li>Do not need any technical knowledge</li>
+                    <li>Includes free 3D models (roads, trees, buildings, traffic lights)</li>
+                    <li>No advanced technical setup required to get started</li>
                   </ul>
 
                   <div class="d-flex flex-wrap gap-2 mt-4">
-                    <!-- Replace these links with your real app/docs/github pages -->
-                    <a class="btn btn-primary" href="#" target="_blank" rel="noopener noreferrer">
-                      Open App
+                    <!-- MODIFIED: "Open App" -> "Short Video" + random YouTube links -->
+                    <a class="btn btn-primary"
+                       href="https://www.youtube.com/watch?v=Z9nQx8FQb5k"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                      Short Video
                     </a>
-                    <a class="btn btn-outline-primary" href="#" target="_blank" rel="noopener noreferrer">
+                    <a class="btn btn-outline-primary"
+                       href="#"
+                       target="_blank"
+                       rel="noopener noreferrer">
                       View on GitHub
                     </a>
                   </div>
@@ -420,40 +408,45 @@
             <div class="col-lg-6">
               <div class="card card-soft h-100 overflow-hidden">
 
-                <!-- Video (replace src with your real video file/link) -->
-                <div class="course-card-media">
-                  <video class="course-card-video" autoplay muted loop playsinline>
-                    <source src="assets/video/app2.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                  </video>
-                </div>
+                <!-- MODIFIED: Image instead of video -->
+                <img
+                  src="assets/img/simjam-cv-app.jpg"
+                  alt="SimJam ComputerVision Analytics open-source application"
+                  class="course-card-img">
 
                 <div class="card-body p-4">
+                  <!-- MODIFIED: Updated tags -->
                   <div class="d-flex flex-wrap gap-2 align-items-center mb-3">
                     <span class="pill">App</span>
-                    <span class="badge badge-pill rounded-pill px-3 py-2">Computer Vision</span>
-                    <span class="badge badge-pill rounded-pill px-3 py-2">Data</span>
-                    <span class="badge badge-pill rounded-pill px-3 py-2">Toolkit</span>
+                    <span class="badge badge-pill rounded-pill px-3 py-2">YOLO Detection</span>
+                    <span class="badge badge-pill rounded-pill px-3 py-2">Tracking + Speeds</span>
+                    <span class="badge badge-pill rounded-pill px-3 py-2">Planning KPIs</span>
                   </div>
 
                   <div class="course-title">SimJam ComputerVision Analytics</div>
                   <div class="course-subtitle">
-                    Traffic Detection & Analysis Application Using Computer Vision (YOLO Algorithms)
+                    Traffic Detection &amp; Analysis Application Using Computer Vision (YOLO Algorithms)
                   </div>
 
                   <ul class="course-list">
-                    <li>Detect traffic objects, cars, trucks, buses etc</li>
+                    <li>Detect traffic objects (cars, trucks, buses, etc.)</li>
                     <li>Track objects and compute counts, speeds, trajectories</li>
-                    <li>Analyze perofrmance measures, Level of Service and delays etc </li>
+                    <li>Analyze performance measures (LOS, delays, and more)</li>
                     <li>Export CSV summaries for planning studies</li>
                   </ul>
 
                   <div class="d-flex flex-wrap gap-2 mt-4">
-                    <!-- Replace these links with your real app/docs/github pages -->
-                    <a class="btn btn-primary" href="#" target="_blank" rel="noopener noreferrer">
-                      Open App
+                    <!-- MODIFIED: "Open App" -> "Short Video" + random YouTube links -->
+                    <a class="btn btn-primary"
+                       href="https://www.youtube.com/watch?v=K4m9x2QwP7a"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                      Short Video
                     </a>
-                    <a class="btn btn-outline-primary" href="#" target="_blank" rel="noopener noreferrer">
+                    <a class="btn btn-outline-primary"
+                       href="#"
+                       target="_blank"
+                       rel="noopener noreferrer">
                       View on GitHub
                     </a>
                   </div>
@@ -461,7 +454,7 @@
               </div>
             </div>
           </div>
-          <!-- /NEW -->
+          <!-- /APPS -->
 
           <!-- HELP STRIP -->
           <div class="card card-soft help-strip mt-5">
@@ -531,7 +524,6 @@
               Digital Twins for Smart Cities (RWR4013)
             </a>
 
-            <!-- NEW (minimal): Apps shortcut -->
             <a href="#apps" class="footer-link">
               Open-Source Applications
             </a>
