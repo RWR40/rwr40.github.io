@@ -1,0 +1,1144 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>RWR4015 - Traffic Simulation for Planning Applications | Roadway VR</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q6JRWT6F5F"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-Q6JRWT6F5F');
+    </script>
+
+    <!-- Bootstrap 5 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      crossorigin="anonymous">
+
+    <style>
+      body{
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background-color: #fafafa;
+        scroll-behavior: smooth;
+      }
+
+      /* NAVBAR */
+      .navbar-brand-box{
+        width: 32px;
+        height: 32px;
+        font-size: 0.8rem;
+        font-weight: 700;
+      }
+
+      /* HERO */
+      .hero{
+        background-image:
+          linear-gradient(rgba(0,0,0,0.88), rgba(0,0,0,0.88)),
+          url("assets/img/highway-hero.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        color: rgba(255,255,255,0.92);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      .hero h1{
+        font-family: "Georgia", "Times New Roman", serif;
+        letter-spacing: 0.02em;
+        color: rgba(255,255,255,0.98);
+      }
+      .hero .lead{
+        color: rgba(255,255,255,0.90);
+      }
+      .hero{
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+      }
+
+      /* Cards / Typo */
+      .card-soft{
+        border: 1px solid rgba(0,0,0,0.06);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      }
+      .section-title{
+        font-family: "Georgia", "Times New Roman", serif;
+        font-weight: 500;
+        letter-spacing: 0.02em;
+      }
+
+      .badge-pill{
+        background-color: #6D28D2 !important;
+        color: #ffffff !important;
+        border: 1px solid rgba(255,255,255,0.25) !important;
+      }
+
+      /* Preview video */
+      .preview-video-wrap{
+        position: relative;
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid rgba(0,0,0,0.08);
+
+        /* NEW: match the video shape (change if your video isn't 16:9) */
+        aspect-ratio: 16 / 9;
+        background: #000;
+      }
+
+      .preview-video{
+        width: 100%;
+        height: 100%;        /* fill the wrapper */
+        display: block;
+        object-fit: contain; /* NEW: show full video, no cropping */
+        background: #000;
+      }
+      .preview-badge{
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        padding: 6px 10px;
+        font-size: 12px;
+        border-radius: 999px;
+        background: rgba(0,0,0,0.55);
+        color: #fff;
+        letter-spacing: 0.02em;
+      }
+
+      /* Course code pill */
+      .course-code-pill{
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(255,255,255,0.25);
+        background: rgba(255,255,255,0.08);
+        color: #fff;
+        font-size: 0.85rem;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      /* Buttons */
+      .btn-primary{
+        background-color: #6D28D2 !important;
+        border-color: #6D28D2 !important;
+      }
+      .btn-primary:hover{
+        background-color: #5B21B6 !important;
+        border-color: #5B21B6 !important;
+      }
+
+      /* Outline-style buttons */
+      .btn-outline-primary{
+        color: #6D28D2 !important;
+        border-color: rgba(109,40,210,0.45) !important;
+        background: rgba(109,40,210,0.06) !important;
+      }
+      .btn-outline-primary:hover{
+        color: #fff !important;
+        background: #6D28D2 !important;
+        border-color: #6D28D2 !important;
+      }
+
+      /* ===== Desktop-only justified text (only where you add the class) ===== */
+      .justify-desktop{
+        text-align: left;
+      }
+
+      /* only justify when the column is wide enough */
+      @media (min-width: 1200px){  /* try 1200 or even 1400 */
+        .justify-desktop{
+          text-align: justify;
+          text-justify: inter-word;
+
+          hyphens: auto;
+          -webkit-hyphens: auto;
+          -ms-hyphens: auto;
+
+          text-wrap: pretty; /* nicer line breaks (modern browsers) */
+        }
+      }
+
+      /* ===== Course Evaluation (right card) ===== */
+      .eval-item{
+        display: flex;
+        gap: 14px;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-wrap: wrap;
+      }
+      .eval-left{ flex: 1 1 320px; }
+      .eval-title{
+        font-weight: 700;
+        margin-bottom: 4px;
+      }
+      .eval-metric{
+        color: #6c757d;
+        font-size: 0.95rem;
+        line-height: 1.35;
+      }
+      .eval-cta{
+        flex: 0 0 auto;
+        margin-left: auto;
+        width: 200px;
+      }
+      .eval-cta .btn{
+        border-radius: 999px;
+        padding: 6px 12px;
+        font-size: 0.9rem;
+        white-space: nowrap;
+        width: 100%;
+        text-align: center;
+      }
+      @media (max-width: 768px){
+        .eval-cta{ width: 100%; }
+        .eval-cta .btn{ width: 100%; text-align: center; }
+      }
+
+      /* Udemy-like rating row */
+      .rating-row{
+        display: inline-flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .rating-main{
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .rating-num{
+        font-weight: 800;
+        color: #111;
+      }
+      .stars{
+        display: inline-flex;
+        align-items: center;
+        gap: 2px;
+        transform: translateY(1px);
+      }
+      .star-icon{
+        width: 14px;
+        height: 14px;
+        display: inline-block;
+      }
+      .star-fill{ fill: #f59e0b; }
+      .star-empty{ fill: rgba(0,0,0,0.18); }
+
+      .eval-link{
+        color: #6D28D2;
+        text-decoration: none;
+        font-weight: 600;
+      }
+      .eval-link:hover{
+        text-decoration: underline;
+      }
+
+      .metric-sep{
+        color: rgba(0,0,0,0.25);
+      }
+
+      /* ===== Topics table polish ===== */
+      .topics-table th{ font-weight: 700; }
+      .topics-table td{ vertical-align: top; }
+      .topics-table td, .topics-table th{ padding: 14px 16px; }
+
+      .topics-table{ width: 100%; table-layout: fixed; }
+      .topics-table th:nth-child(1), .topics-table td:nth-child(1){ width: 70px; }
+      .topics-table th:nth-child(3), .topics-table td:nth-child(3){ width: 300px; }
+
+      .topics-table .week-cell{
+        font-weight: 700;
+        color: #111;
+        text-align: center;
+        white-space: nowrap;
+      }
+
+      .topic-title{
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+
+      .topic-line{
+        margin-top: 4px;
+        line-height: 1.35;
+        color: #6c757d;
+        font-size: 0.95rem;
+        word-wrap: break-word;
+        overflow-wrap: anywhere;
+      }
+      .topic-line strong{ color: #111; }
+
+      .topic-line ul{
+        margin: 6px 0 0;
+        padding-left: 1.1rem;
+      }
+      .topic-line li{ margin-bottom: 6px; }
+
+      .materials-stack{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+      }
+      .materials-stack .btn{
+        border-radius: 999px;
+        padding: 6px 10px;
+        font-size: 0.9rem;
+        width: fit-content;
+        min-width: 220px;
+        white-space: nowrap;
+      }
+
+      .topics-table tbody tr:hover{
+        background: rgba(109,40,210,0.04);
+      }
+
+      @media (max-width: 768px){
+        .topics-table{ table-layout: auto; }
+        .materials-stack{ align-items: stretch; }
+        .materials-stack .btn{ width: 100%; text-align: center; min-width: 0; }
+        .eval-cta{ width: 100%; }
+        .eval-cta .btn{ width: 100%; text-align: center; }
+      }
+
+      /* ===== Career Outcomes list ===== */
+      .role-list{
+        margin: 0;
+        padding-left: 1.1rem;
+      }
+      .role-list li{
+        margin-bottom: 10px;
+        line-height: 1.4;
+      }
+      .role-title{
+        font-weight: 700;
+        color: #111;
+      }
+
+      /* Footer */
+      footer{
+        border-top: 1px solid #ddd;
+        background-color: #fff;
+      }
+      .footer-link{
+        display: block;
+        text-decoration: none;
+        color: #6c757d;
+        margin-bottom: 0.25rem;
+      }
+      .footer-link:hover{ color: #0d6efd; }
+          /* Mobile-only: shrink hero tagline + badges + instructor line */
+    @media (max-width: 576px){
+      .hero .lead{
+        font-size: 1rem;      /* was larger */
+        line-height: 1.25;
+        margin-bottom: .6rem;
+      }
+    
+      .hero .badge-pill{
+        font-size: .72rem;
+        padding: .35rem .6rem !important; /* overrides px-3 py-2 */
+      }
+    
+      .hero .d-flex.gap-2{
+        gap: .35rem !important; /* tighter spacing between badges */
+      }
+    
+      .hero p.small{
+        font-size: .8rem;
+      }
+    }
+    </style>
+  </head>
+
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="/">
+          <span class="navbar-brand-box border border-2 border-dark rounded-1 d-inline-flex align-items-center justify-content-center me-2">
+            VR
+          </span>
+          <span class="fw-semibold">Roadway VR</span>
+        </a>
+
+        <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse" data-bs-target="#mainNav"
+                aria-controls="mainNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="/">Home</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link active" href="/TrafficSimulationforPlanningApplications/">RWR4015</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="#resources">Resources</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.youtube.com/@RoadwayVR" target="_blank" rel="noopener noreferrer">
+                YouTube
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero">
+      <div class="container">
+        <div class="row align-items-center g-4">
+          <div class="col-lg-7">
+
+            <div class="mb-2">
+              <span class="course-code-pill">RWR4015</span>
+            </div>
+
+            <h1 class="display-6 mb-3">Traffic Simulation for Planning Applications</h1>
+
+            <p class="lead mb-3">
+              Use traffic simulation as a planning decision tool to model, test, and justify better designs.
+            </p>
+
+            <div class="d-flex flex-wrap gap-2">
+              <span class="badge badge-pill rounded-pill px-3 py-2">Traffic Simulation</span>
+              <span class="badge badge-pill rounded-pill px-3 py-2">Traffic Signal Planning</span>
+              <span class="badge badge-pill rounded-pill px-3 py-2">Environmental Analysis</span>
+              <span class="badge badge-pill rounded-pill px-3 py-2">Traffic Impact Study</span>
+            </div>
+
+            <p class="mt-3 mb-0 small" style="color: rgba(255,255,255,0.92);">
+              Instructor: Ahmad Mohammadi · RoadwayVR
+            </p>
+          </div>
+
+          <div class="col-lg-5">
+            <div class="card card-soft p-2">
+              <div class="card-body p-2">
+                <h2 class="h6 mb-3">Preview this course</h2>
+
+                <div class="preview-video-wrap">
+                  <video class="preview-video" autoplay muted loop playsinline>
+                    <source src="assets/video/preview.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                  <div class="preview-badge">Preview</div>
+
+                </div>
+
+                <p class="small text-muted mt-3 mb-0">
+                  Course workflow preview: Use Traffic Simulation for Urban Planning
+                </p>
+
+                <!-- MODIFIED: add PDF download button -->
+                <div class="mt-3 d-grid gap-2">
+                  <a class="btn btn-primary" href="#outline">View course outline</a>
+
+                  <a class="btn btn-outline-primary"
+                     href="assets/course/RWR-4015-Traffic-Simulation.pdf"
+                     target="_blank"
+                     rel="noopener noreferrer">
+                    Download course description (PDF)
+                  </a>
+                </div>
+                <!-- /MODIFIED -->
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- COURSE OVERVIEW -->
+      <section id="overview" class="py-4 bg-white">
+        <div class="container">
+          <h2 class="section-title h3 mb-2">Course Overview</h2>
+          <p class="text-muted mb-3">
+            How the course is structured and what it prepares you to do.
+          </p>
+
+          <div class="row g-3">
+            <div class="col-lg-6">
+              <div class="card card-soft h-100">
+                <div class="card-body">
+                  <h3 class="h5 mb-3">Course overview</h3>
+
+                  <!-- JUSTIFIED ON DESKTOP ONLY -->
+                  <p class="mb-0 text-muted justify-desktop">
+                    This 12-week course combines lecture-based instruction with hands-on workflows to build professional competency in transportation planning.
+                    Weekly modules introduce key capabilities: traffic simulation fundamentals, network modeling (GIS/OpenStreetMap), demand calibration, signal planning,
+                    mixed traffic scenarios (autonomous vehicles), environmental analysis (emissions and electric vehicles), intelligent transportation systems, and 3D visualization.
+                    Following UDL principles, content is delivered through multiple formats including lecture slides, hands-on slides, and video demonstrations, all accessible through the course website for self-paced learning.
+                    Weekly hands-on sessions build progressively from foundational skills to advanced applications, with each producing concrete deliverables.
+                    The course has a design project where students conduct a traffic impact study on a real intersection and conduct alternatives analysis with traffic simulation, 3D visualization,
+                    and professional deliverables (technical report and presentation). Students receive support through flexible office hours and an online peer learning community.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-6">
+              <div class="card card-soft h-100">
+                <div class="card-body">
+                  <h3 class="h5 mb-3">Course Evaluation</h3>
+
+                  <!-- 1) Udemy -->
+                  <div class="eval-item">
+                    <div class="eval-left">
+                      <div class="eval-title">1) Course on Udemy</div>
+
+                      <div class="eval-metric">
+                        <span class="rating-row" aria-label="Udemy rating summary">
+                          <span class="rating-main" aria-label="4.5 out of 5">
+                            <span class="rating-num">4.5</span>
+
+                            <span class="stars" aria-hidden="true">
+                              <svg class="star-icon" viewBox="0 0 20 20"><path class="star-fill" d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.81c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                              <svg class="star-icon" viewBox="0 0 20 20"><path class="star-fill" d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.81c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                              <svg class="star-icon" viewBox="0 0 20 20"><path class="star-fill" d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.81c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                              <svg class="star-icon" viewBox="0 0 20 20"><path class="star-fill" d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.81c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+
+                              <svg class="star-icon" viewBox="0 0 20 20" aria-hidden="true">
+                                <defs>
+                                  <clipPath id="halfStarUdemy">
+                                    <rect x="0" y="0" width="10" height="20"></rect>
+                                  </clipPath>
+                                </defs>
+                                <path class="star-empty" d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.81c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                <path class="star-fill" clip-path="url(#halfStarUdemy)" d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.81c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                              </svg>
+                            </span>
+
+                            <a class="eval-link"
+                               href="https://www.udemy.com/course/sumo-traffic-simulator/?srsltid=AfmBOookkEgfIRcuUwyM4M18hObxPn--X3pSJPiHDQnne7PAV6nRnbb4"
+                               target="_blank"
+                               rel="noopener noreferrer">
+                              (31 ratings)
+                            </a>
+                          </span>
+
+                          <span class="metric-sep" aria-hidden="true">·</span>
+                          <span>437 students</span>
+                        </span>
+                      </div>
+                    </div>
+
+                    <div class="eval-cta">
+                      <a class="btn btn-sm btn-outline-primary"
+                         href="https://www.udemy.com/course/sumo-traffic-simulator/?srsltid=AfmBOookkEgfIRcuUwyM4M18hObxPn--X3pSJPiHDQnne7PAV6nRnbb4"
+                         target="_blank"
+                         rel="noopener noreferrer">
+                        View on Udemy
+                      </a>
+                    </div>
+                  </div>
+
+                  <hr class="my-3">
+
+                  <!-- 2) YouTube -->
+                  <div class="eval-item">
+                    <div class="eval-left">
+                      <div class="eval-title">2) Course on YouTube</div>
+                      <div class="eval-metric">
+                        Views (last 28 days): 12,800<br>
+                        Watch time: 578 hours
+                      </div>
+                    </div>
+                    <div class="eval-cta">
+                      <a class="btn btn-sm btn-outline-primary" href="https://www.youtube.com/@RoadwayVR" target="_blank" rel="noopener noreferrer">
+                        View on YouTube
+                      </a>
+                    </div>
+                  </div>
+
+                  <hr class="my-3">
+
+                  <!-- 3) GitHub -->
+                  <div class="eval-item">
+                    <div class="eval-left">
+                      <div class="eval-title">3) Course on GitHub</div>
+                      <div class="eval-metric">
+                        <svg class="star-icon" viewBox="0 0 20 20" aria-hidden="true"
+                             style="margin-right:6px; vertical-align:-2px; position:relative; top:-1px;">
+                          <path class="star-fill" d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.81c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                        Stars: <strong><span id="githubStars">90</span></strong><br>
+                        Repo: <span class="text-muted">SUMO Traffic Simulator Tutorial</span>
+                      </div>
+                    </div>
+                    <div class="eval-cta">
+                      <a class="btn btn-sm btn-outline-primary"
+                         href="https://github.com/RoadwayVR/SUMO-Traffic-Simulator-Tutorial"
+                         target="_blank" rel="noopener noreferrer">
+                        View on GitHub
+                      </a>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- OUTLINE -->
+      <section id="outline" class="py-4">
+        <div class="container">
+          <h2 class="section-title h3 mb-2">Course Outline</h2>
+          <p class="text-muted mb-3">What you’ll learn and how you’ll be evaluated.</p>
+
+          <div class="row g-3">
+            <!-- Learning Goals -->
+            <div class="col-md-6">
+              <div class="card card-soft h-100">
+                <div class="card-body">
+                  <h3 class="h5 mb-3">Course Learning Outcomes</h3>
+
+                  <!-- JUSTIFIED ON DESKTOP ONLY -->
+                  <ul class="mb-0 justify-desktop">
+                    <li>Develop foundational knowledge in transportation planning</li>
+                    <li>Build and calibrate traffic simulation models using professional open-source tools (SUMO, QGIS) alongside industry-standard methods</li>
+                    <li>Analyze transportation scenarios including signal timing, mixed traffic (AVs/manual vehicles), and environmental impacts</li>
+                    <li>Evaluate planning alternatives using performance metrics (delay, emissions, level of service)</li>
+                    <li>Communicate technical findings to diverse audiences through reports, visualizations, and presentations</li>
+                    <li>Apply conceptual understanding to diagnose model issues and justify calibration decisions</li>
+                    <li>Integrate emerging technologies (AI, 3D visualization) into transportation planning workflows</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Assessment -->
+            <div class="col-md-6">
+              <div class="card card-soft h-100">
+                <div class="card-body">
+                  <h3 class="h5 mb-3">Assessment (example)</h3>
+                  <ul class="mb-0">
+                    <li>In-class Deliverables (15%)</li>
+                    <li>Transportation News Brief (each student presents once) (10%)</li>
+                    <li>Final Project (35%)</li>
+                    <li>Assignments (10%)</li>
+                    <li>Midterm Examination (25%)</li>
+                    <li>Participation (5%)</li>
+                  </ul>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Topics / Materials -->
+      <section id="weeks" class="py-4">
+        <div class="container">
+          <h2 class="section-title h3 mb-2">Topics</h2>
+          <p class="text-muted mb-3">
+            This 12-week course is organized around weekly lecture concepts and hands-on labs. Each week includes a lecture slide, a hands-on slide, and one or more video tutorials.
+          </p>
+
+          <div class="table-responsive card card-soft">
+            <table class="table table-striped mb-0 topics-table">
+              <thead>
+                <tr>
+                  <th class="week-cell">Week</th>
+                  <th>Topic (Lecture + Hands-on)</th>
+                  <th>Materials</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                <!-- Week 1 -->
+                <tr>
+                  <td class="week-cell">1</td>
+                  <td>
+                    <div class="topic-title">Introduction to Traffic Simulation</div>
+                    <div class="topic-line"><strong>Lecture:</strong> What is Traffic Simulation?; The Purpose of traffic simulation; Examples of Traffic Simulation Studies; Course Description</div>
+                    <div class="topic-line"><strong>Hands-on:</strong> Install Simulation of Urban Mobility (SUMO); Set Up SUMO Environment Variables; Install Notepad++; SUMO Files and User Interface; Create a Simple Network with Car Traffic Demand; Add Opposite Traffic Flow</div>
+                  </td>
+                  <td>
+                    <div class="materials-stack">
+                      <a class="btn btn-sm btn-outline-primary" href="assets/slide/RWR4015-Week01-a.pdf" target="_blank" rel="noopener noreferrer">Lecture Slide (PDF)</a>
+                      <a class="btn btn-sm btn-outline-primary" href="assets/slide/RWR4015-Week01-b.pdf" target="_blank" rel="noopener noreferrer">Hands-on Slide (PDF)</a>
+                      <a class="btn btn-sm btn-outline-primary" href="https://youtu.be/IwsrNWlX9Ag" target="_blank" rel="noopener noreferrer">Video Tutorial</a>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- Week 2 -->
+                <tr>
+                  <td class="week-cell">2</td>
+                  <td>
+                    <div class="topic-title">Fundamentals of Traffic Simulation</div>
+                    <div class="topic-line"><strong>Lecture:</strong> Road Network Development; Vehicles Characteristics; Vehicle Dynamics; Car Following and Lane Changing Models; Traffic Theory; Fundamental Diagram (Flow, Density, Speed)</div>
+                    <div class="topic-line"><strong>Hands-on:</strong> Road Network Development in Traffic Simulation; Car Following and Lane Changing Models in Traffic Simulation</div>
+                  </td>
+                  <td>
+                    <div class="materials-stack">
+                      <a class="btn btn-sm btn-outline-primary" href="assets/slide/RWR4015-Week02-a.pdf" target="_blank" rel="noopener noreferrer">Lecture Slide (PDF)</a>
+                      <a class="btn btn-sm btn-outline-primary" href="assets/slide/RWR4015-Week02-b.pdf" target="_blank" rel="noopener noreferrer">Hands-on Slide (PDF)</a>
+                      <a class="btn btn-sm btn-outline-primary" href="https://youtu.be/DMFkkzwW64k" target="_blank" rel="noopener noreferrer">Video Tutorial</a>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- Week 3 -->
+                <tr>
+                  <td class="week-cell">3</td>
+                  <td>
+                    <div class="topic-title">Network Modelling with GIS</div>
+                    <div class="topic-line"><strong>Lecture:</strong> Introduction to GIS; GIS in Planning Applications; Relationship between GIS and Simulation; What Network Details Matter</div>
+                    <div class="topic-line"><strong>Hands-on:</strong> Geographic Information System (GIS); GIS Software; Download and Installing QGIS Software - Open Source and Free; Map Services; Imagery Map and Georeferencing; Create a Road Network on Top of GIS; Import a Road Network from OpenStreetMap into SUMO</div>
+                  </td>
+                  <td>
+                    <div class="materials-stack">
+                      <a class="btn btn-sm btn-outline-primary" href="assets/slide/RWR4015-Week03-a.pdf" target="_blank" rel="noopener noreferrer">Lecture Slide (PDF)</a>
+                      <a class="btn btn-sm btn-outline-primary" href="assets/slide/RWR4015-Week03-b.pdf" target="_blank" rel="noopener noreferrer">Hands-on Slide (PDF)</a>
+                      <a class="btn btn-sm btn-outline-primary" href="https://youtu.be/TnOR-pqjYwc" target="_blank" rel="noopener noreferrer">Video Tutorial</a>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- Week 4 -->
+                <tr>
+                  <td class="week-cell">4</td>
+                  <td>
+                    <div class="topic-title">Traffic Signal Planning in Simulation</div>
+                    <div class="topic-line"><strong>Lecture:</strong> Signalized and Unsignalized Intersections; Introduction to Traffic Signal Planning; Traffic Signal Planning Case Studies; Signal Elements (phases, cycle, lost time); Fixed-time vs. Actuated; Ring-barrier (conceptual); Basic Signal Optimization Concepts</div>
+                    <div class="topic-line"><strong>Hands-on:</strong> Intersection - Unsignalized; Intersection - Signalized</div>
+                  </td>
+                  <td>
+                    <div class="materials-stack">
+                      <a class="btn btn-sm btn-outline-primary" href="assets/slide/RWR4015-Week04-a.pdf" target="_blank" rel="noopener noreferrer">Lecture Slide (PDF)</a>
+                      <a class="btn btn-sm btn-outline-primary" href="assets/slide/RWR4015-Week04-b.pdf" target="_blank" rel="noopener noreferrer">Hands-on Slide (PDF)</a>
+                      <a class="btn btn-sm btn-outline-primary" href="https://youtu.be/raaIVc0xbz0" target="_blank" rel="noopener noreferrer">Video Tutorial</a>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- Week 5 -->
+                <tr>
+                  <td class="week-cell">5</td>
+                  <td>
+                    <div class="topic-title">Demand Modelling and Route Assignment</div>
+                    <div class="topic-line"><strong>Lecture:</strong> Elements of Demand Modelling and Route Assignment; Traffic Movement Calibration; Traffic Volume Calibration; Traffic Speed Calibration</div>
+                    <div class="topic-line"><strong>Hands-on:</strong> Implementation of Traffic Movement/Volume Speed Calibration in Simulation</div>
+                  </td>
+                  <td>
+                    <div class="materials-stack">
+                      <a class="btn btn-sm btn-outline-primary" href="assets/slide/RWR4015-Week05-a.pdf" target="_blank" rel="noopener noreferrer">Lecture Slide (PDF)</a>
+                      <a class="btn btn-sm btn-outline-primary" href="assets/slide/RWR4015-Week05-b.pdf" target="_blank" rel="noopener noreferrer">Hands-on Slide (PDF)</a>
+                      <a class="btn btn-sm btn-outline-primary" href="#" target="_blank" rel="noopener noreferrer">Video Tutorial</a>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- Week 6 -->
+                <tr>
+                  <td class="week-cell">6</td>
+                  <td>
+                    <div class="topic-title">Mixed Traffic Planning: Autonomous and Human-Driven Vehicles</div>
+                    <div class="topic-line"><strong>Lecture:</strong> Fundamentals of Connected and Autonomous Vehicles (CAVs); Automation Levels; Simulation Tools for CAVs; Impact of Mixed Traffic Planning</div>
+                    <div class="topic-line"><strong>Hands-on:</strong> Develop Mixed Traffic Planning for AVs and Human-Driven Vehicles in Simulation; Analyze Impacts of Different AV Penetration Rates on Traffic Performance</div>
+                  </td>
+                  <td>
+                    <div class="materials-stack">
+                      <a class="btn btn-sm btn-outline-primary" href="assets/slide/RWR4015-Week06-a.pdf" target="_blank" rel="noopener noreferrer">Lecture Slide (PDF)</a>
+                      <a class="btn btn-sm btn-outline-primary" href="assets/slide/RWR4015-Week06-b.pdf" target="_blank" rel="noopener noreferrer">Hands-on Slide (PDF)</a>
+                      <a class="btn btn-sm btn-outline-primary" href="https://youtu.be/i5-swR3TeHM" target="_blank" rel="noopener noreferrer">Video Tutorial</a>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- Week 7 -->
+                <tr>
+                  <td class="week-cell">7</td>
+                  <td>
+                    <div class="topic-title">Environmental Analysis (Energy, Emissions, Electric Vehicles)</div>
+                    <div class="topic-line"><strong>Lecture:</strong> Fundamental of Energy and Emission (Combustion Engine Vehicle and Electric Vehicles); Energy and Emission Definition and Impact of Different Vehicle Types; Internal Combustion Engine Vehicle and Electric Vehicle; SUMO Vehicle Supports; Energy Consumption and Emission Models</div>
+                    <div class="topic-line"><strong>Hands-on:</strong> Energy Consumption and Emission Model (HBEFA Model); Emission Models in Simulation; Environmental Analysis in Simulation; Develop Mixed Traffic Planning Strategies of EVs and ICE in Simulation; Analyze Environmental Impacts of Different Scenarios</div>
+                  </td>
+                  <td>
+                    <div class="materials-stack">
+                      <a class="btn btn-sm btn-outline-primary" href="assets/slide/RWR4015-Week07-a.pdf" target="_blank" rel="noopener noreferrer">Lecture Slide (PDF)</a>
+                      <a class="btn btn-sm btn-outline-primary" href="assets/slide/RWR4015-Week07-b.pdf" target="_blank" rel="noopener noreferrer">Hands-on Slide (PDF)</a>
+                      <a class="btn btn-sm btn-outline-primary" href="https://youtu.be/OU2WMN13E3g" target="_blank" rel="noopener noreferrer">Video Tutorial</a>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- Week 8 -->
+                <tr>
+                  <td class="week-cell">8</td>
+                  <td>
+                    <div class="topic-title">Midterm (Paper-Based): Model Reasoning</div>
+                    <div class="topic-line">
+                      <strong>In-class assessment (no computer):</strong> Students interpret printed outputs (traffic counts, speeds, travel times, queue plots, SUMO snapshots, signal timing diagrams, network diagrams, emission reports, AV penetration scenarios) and:
+                      <ul>
+                        <li><strong>Diagnose</strong> likely causes of simulation-reality mismatches (demand, speed parameters, signal timing, car-following/lane-changing behavior, network geometry)</li>
+                        <li><strong>Propose</strong> calibration strategies with justification (what to adjust and why)</li>
+                        <li><strong>Evaluate</strong> model quality and validation evidence</li>
+                        <li><strong>Apply</strong> traffic theory to explain simulation behaviors (flow-density relationships, capacity, queuing)</li>
+                        <li><strong>Analyze</strong> mixed traffic scenarios (compare impacts of different AV penetration rates on traffic performance)</li>
+                        <li><strong>Evaluate</strong> environmental impacts (assess energy consumption and emissions across different vehicle mix scenarios)</li>
+                        <li><strong>Compare</strong> design alternatives based on simulation outputs (intersections, signal timing, network changes, EV/ICE planning strategies)</li>
+                      </ul>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="materials-stack">
+                      <span class="text-muted small">N/A (paper-based)</span>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- Week 9 -->
+                <tr>
+                  <td class="week-cell">9</td>
+                  <td>
+                    <div class="topic-title">Artificial Intelligence in Intelligent Transportation Systems</div>
+                    <div class="topic-line"><strong>Lecture:</strong> Reviewing Intelligent Transportation Systems case studies and explain concept of ITS; three phases of detection; algorithms and decisions in ITS; explain application of artificial intelligence in ITS</div>
+                    <div class="topic-line"><strong>Hands-on:</strong> Fundamental of machine learning algorithms; fundamental of reinforcement learning algorithms; implement an intelligent traffic signal; analyze the performance of an intelligent traffic signal</div>
+                  </td>
+                  <td>
+                    <div class="materials-stack">
+                      <a class="btn btn-sm btn-outline-primary" href="assets/slide/RWR4015-Week09-a.pdf" target="_blank" rel="noopener noreferrer">Lecture Slide (PDF)</a>
+                      <a class="btn btn-sm btn-outline-primary" href="assets/slide/RWR4015-Week09-b.pdf" target="_blank" rel="noopener noreferrer">Hands-on Slide (PDF)</a>
+                      <a class="btn btn-sm btn-outline-primary" href="https://youtu.be/lk7FlKk-BsU" target="_blank" rel="noopener noreferrer">Video Tutorial</a>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- Week 10 -->
+                <tr>
+                  <td class="week-cell">10</td>
+                  <td>
+                    <div class="topic-title">3D Simulation in Planning I</div>
+                    <div class="topic-line"><strong>Lecture:</strong> 3D Visualization in Planning; 3D Visualization Case Studies; 3D Simulation with Existing Game Engines; Unity Game Engine</div>
+                    <div class="topic-line"><strong>Hands-on:</strong> Install Sumo2Unity Tool; Install Unity Game Engine; Visualize a Single Lane Road with one Unsignalized Intersection</div>
+                  </td>
+                  <td>
+                    <div class="materials-stack">
+                      <a class="btn btn-sm btn-outline-primary" href="assets/slide/RWR4015-Week10-a.pdf" target="_blank" rel="noopener noreferrer">Lecture Slide (PDF)</a>
+                      <a class="btn btn-sm btn-outline-primary" href="assets/slide/RWR4015-Week10-b.pdf" target="_blank" rel="noopener noreferrer">Hands-on Slide (PDF)</a>
+                      <a class="btn btn-sm btn-outline-primary" href="https://youtu.be/tpddWXg5o8I" target="_blank" rel="noopener noreferrer">Video Tutorial</a>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- Week 11 -->
+                <tr>
+                  <td class="week-cell">11</td>
+                  <td>
+                    <div class="topic-title">3D Simulation in Planning II</div>
+                    <div class="topic-line"><strong>Lecture:</strong> Multi Lane Road with Signalized Intersection</div>
+                    <div class="topic-line"><strong>Hands-on:</strong> Visualize Different Modes of Transportation (Bicycle, Scooters)</div>
+                  </td>
+                  <td>
+                    <div class="materials-stack">
+                      <a class="btn btn-sm btn-outline-primary" href="assets/slide/RWR4015-Week11-a.pdf" target="_blank" rel="noopener noreferrer">Lecture Slide (PDF)</a>
+                      <a class="btn btn-sm btn-outline-primary" href="assets/slide/RWR4015-Week11-b.pdf" target="_blank" rel="noopener noreferrer">Hands-on Slide (PDF)</a>
+                      <a class="btn btn-sm btn-outline-primary" href="https://youtu.be/jjGlJMDXF84" target="_blank" rel="noopener noreferrer">Video Tutorial</a>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- Week 12 -->
+                <tr>
+                  <td class="week-cell">12</td>
+                  <td>
+                    <div class="topic-title">Final Project Report and Presentation</div>
+                    <div class="topic-line"><strong>Lecture:</strong> Writing A Final Project Report Including Analysis Results through Tables and Plots; Discuss Findings</div>
+                    <div class="topic-line"><strong>Hands-on:</strong> Final Project Presentations</div>
+                  </td>
+                  <td>
+                    <div class="materials-stack">
+                      <a class="btn btn-sm btn-outline-primary" href="assets/slide/RWR4015-Week12-a.pdf" target="_blank" rel="noopener noreferrer">Lecture Slide (PDF)</a>
+                      <a class="btn btn-sm btn-outline-primary" href="assets/slide/RWR4015-Week12-b.pdf" target="_blank" rel="noopener noreferrer">Hands-on Slide (PDF)</a>
+                      <a class="btn btn-sm btn-outline-primary" href="https://youtu.be/DsGvDcmw5ds" target="_blank" rel="noopener noreferrer">Video Tutorial</a>
+                    </div>
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Office Hours -->
+      <section id="office-hours" class="py-4 bg-white">
+        <div class="container">
+          <h2 class="section-title h3 mb-2">Office Hours</h2>
+          <p class="text-muted mb-3">
+            Appointment by email or join the community Discord group.
+          </p>
+
+          <div class="card card-soft">
+            <div class="card-body">
+              <div class="d-flex flex-column flex-md-row gap-2 align-items-md-center justify-content-between">
+                <div class="text-muted">
+                  Prefer Discord for quick questions and announcements.
+                </div>
+                <div class="d-flex flex-wrap gap-2">
+                  <a class="btn btn-sm btn-outline-primary" href="mailto:AhmadMohammadi1441@gmail.com">
+                    Email for appointment
+                  </a>
+                  <a class="btn btn-sm btn-primary"
+                     href="https://discord.gg/8kPaECVzJY"
+                     target="_blank"
+                     rel="noopener noreferrer">
+                    Join Discord
+                  </a>
+                </div>
+              </div>
+              <p class="small text-muted mt-3 mb-0">
+                Tip: include your full name, course code (RWR4015), and a 1–2 sentence summary of your question.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Optional Course Materials -->
+      <section id="optional-materials" class="py-4 bg-white">
+        <div class="container">
+          <h2 class="section-title h3 mb-2">Optional Course Materials</h2>
+          <p class="text-muted mb-3">
+            Recommended references for microsimulation modelling guidance (FHWA).
+          </p>
+
+          <div class="card card-soft">
+            <div class="card-body">
+              <ol class="mb-0">
+                <li class="mb-3">
+                  Federal Highway Administration. (2019). <em>Traffic analysis toolbox volume III: Guidelines for applying traffic microsimulation modeling software</em>
+                  (2019 update to the 2004 version). U.S. Department of Transportation.
+                  <a class="link-primary" href="https://rosap.ntl.bts.gov/view/dot/43570" target="_blank" rel="noopener noreferrer">
+                    https://rosap.ntl.bts.gov/view/dot/43570
+                  </a>
+                </li>
+                <li>
+                  Dowling, R., Skabardonis, A., &amp; Alexiadis, V. (2004). <em>Traffic analysis toolbox volume III: Guidelines for applying traffic microsimulation modeling software</em>
+                  (Publication No. FHWA-HRT-04-040). Federal Highway Administration.
+                  <a class="link-primary" href="https://highways.dot.gov/media/6916" target="_blank" rel="noopener noreferrer">
+                    https://highways.dot.gov/media/6916
+                  </a>
+                </li>
+              </ol>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Course Website -->
+      <section id="course-website" class="py-4 bg-white">
+        <div class="container">
+          <h2 class="section-title h3 mb-2">Course Website</h2>
+          <p class="text-muted mb-3">
+            Access the latest course page, updates, and public materials here:
+          </p>
+
+          <div class="card card-soft">
+            <div class="card-body d-flex flex-column flex-md-row gap-2 align-items-md-center justify-content-between">
+              <div class="text-muted">
+                https://roadwayvr.github.io/TrafficSimulationforPlanningApplications/
+              </div>
+              <a class="btn btn-sm btn-primary"
+                 href="https://roadwayvr.github.io/TrafficSimulationforPlanningApplications/"
+                 target="_blank"
+                 rel="noopener noreferrer">
+                Open Course Website
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ADDED: Course Description PDF -->
+      <section id="course-description" class="py-4 bg-white">
+        <div class="container">
+          <h2 class="section-title h3 mb-2">Course Description (PDF)</h2>
+          <p class="text-muted mb-3">
+            Download the official course description document.
+          </p>
+
+          <div class="card card-soft">
+            <div class="card-body d-flex flex-column flex-md-row gap-2 align-items-md-center justify-content-between">
+              <div class="text-muted">
+                RWR-4015-Traffic-Simulation.pdf
+              </div>
+              <a class="btn btn-sm btn-primary"
+                 href="assets/course/RWR-4015-Traffic-Simulation.pdf"
+                 target="_blank"
+                 rel="noopener noreferrer">
+                Download PDF
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </section>
+      <!-- /ADDED -->
+
+      <!-- Career Outcomes -->
+      <section id="career" class="py-4 bg-white">
+        <div class="container">
+          <h2 class="section-title h3 mb-2">Career Outcomes</h2>
+          <p class="text-muted mb-3">
+            The course provides a foundation for roles such as:
+          </p>
+
+          <div class="card card-soft">
+            <div class="card-body">
+              <ul class="role-list">
+                <li>
+                  <span class="role-title">Traffic Simulation Modeler:</span>
+                  Builds/calibrates microsimulation models and tests alternatives for land-use and transportation planning scenarios.
+                </li>
+                <li>
+                  <span class="role-title">Transportation Planner:</span>
+                  Analyzing and planning transportation systems at the intersection of land use, mobility, and policy
+                  - directly supporting municipal planning departments and consulting firms in development review and transportation studies.
+                </li>
+                <li>
+                  <span class="role-title">Traffic Operations Analyst:</span>
+                  Operational performance analysis, diagnosis, and improvements for municipal and public-sector planning initiatives.
+                </li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- RESOURCES -->
+      <section id="resources" class="py-4 bg-white">
+        <div class="container">
+          <h2 class="section-title h3 mb-2">Resources</h2>
+
+          <div class="row g-3">
+            <div class="col-md-6">
+              <div class="card card-soft h-100">
+                <div class="card-body">
+                  <h3 class="h5 mb-3">Software</h3>
+                  <ul class="mb-0">
+                    <li>Traffic simulation software (microsimulation)</li>
+                    <li>GIS tools for network building (QGIS / OSM)</li>
+                    <li>Optional: game engine tools for 3D/VR visualization</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="card card-soft h-100">
+                <div class="card-body">
+                  <h3 class="h5 mb-3">Links</h3>
+                  <ul class="mb-0">
+                    <li><a href="/" class="link-primary">RoadwayVR Home</a></li>
+                    <li><a href="https://www.youtube.com/@RoadwayVR" target="_blank" rel="noopener noreferrer" class="link-primary">RoadwayVR YouTube</a></li>
+                    <li><a href="https://github.com/RoadwayVR" target="_blank" rel="noopener noreferrer" class="link-primary">RoadwayVR GitHub</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="py-5">
+      <div class="container small">
+        <div class="row gy-4">
+          <div class="col-md-4">
+            <div class="d-flex align-items-center mb-2">
+              <span class="navbar-brand-box border border-2 border-dark rounded-1 d-inline-flex align-items-center justify-content-center me-2">
+                VR
+              </span>
+              <span class="fw-semibold">Roadway VR</span>
+            </div>
+            <p class="mb-0">
+              Course materials and open tutorials for traffic simulation, digital twins, and immersive transportation education.
+            </p>
+          </div>
+
+          <div class="col-md-4">
+            <div class="fw-semibold mb-2">Navigation</div>
+            <a href="#outline" class="footer-link">Outline</a>
+            <a href="#overview" class="footer-link">Course Overview</a>
+            <a href="#weeks" class="footer-link">Topics</a>
+            <a href="#office-hours" class="footer-link">Office Hours</a>
+            <a href="#optional-materials" class="footer-link">Optional Materials</a>
+            <a href="#course-website" class="footer-link">Course Website</a>
+
+            <!-- ADDED -->
+            <a href="#course-description" class="footer-link">Course Description (PDF)</a>
+            <!-- /ADDED -->
+
+            <a href="#career" class="footer-link">Career Outcomes</a>
+            <a href="#resources" class="footer-link">Resources</a>
+          </div>
+
+          <div class="col-md-4">
+            <div class="fw-semibold mb-2">Contact</div>
+            <a href="mailto:AhmadMohammadi1441@gmail.com" class="footer-link">Email</a>
+            <a href="https://www.linkedin.com/in/ahmadmohammadi1441/" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      crossorigin="anonymous"></script>
+
+    <!-- Auto-update GitHub stars -->
+    <script>
+      (function(){
+        const owner = "RoadwayVR";
+        const repo = "SUMO-Traffic-Simulator-Tutorial";
+        const el = document.getElementById("githubStars");
+        if (!el) return;
+
+        fetch(`https://api.github.com/repos/${owner}/${repo}`)
+          .then(r => r.ok ? r.json() : Promise.reject(r))
+          .then(data => {
+            const stars = data && typeof data.stargazers_count === "number"
+              ? data.stargazers_count.toLocaleString()
+              : el.textContent || "90";
+            el.textContent = stars;
+          })
+          .catch(() => {});
+      })();
+    </script>
+  </body>
+</html>
