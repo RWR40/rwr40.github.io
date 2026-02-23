@@ -18,21 +18,21 @@
   <link rel="stylesheet" href="../assets/style.css" />
 
   <style>
-    body {
+    body{
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       scroll-behavior: smooth;
       background-color: #fafafa;
     }
 
     /* NAVBAR */
-    .navbar-brand-box {
+    .navbar-brand-box{
       width: 32px;
       height: 32px;
       font-size: 0.8rem;
       font-weight: 700;
     }
 
-    .section-title {
+    .section-title{
       font-family: "Georgia", "Times New Roman", serif;
       font-weight: 500;
       letter-spacing: 0.03em;
@@ -42,22 +42,6 @@
       border: 1px solid rgba(0,0,0,0.06);
       box-shadow: 0 10px 30px rgba(0,0,0,0.06);
       border-radius: 16px;
-    }
-
-    /* Media area (video) */
-    .card-media-wrap{
-      width: 100%;
-      height: 250px;
-      overflow: hidden;
-      border-top-left-radius: 16px;
-      border-top-right-radius: 16px;
-      background: #000;
-    }
-    .card-media{
-      width: 100%;
-      height: 250px;
-      object-fit: cover;
-      display: block;
     }
 
     .pill{
@@ -127,33 +111,33 @@
       max-width: 1120px;
     }
 
-    footer {
+    footer{
       border-top: 1px solid #ddd;
       background-color: #fff;
     }
 
-    .footer-title {
+    .footer-title{
       font-weight: 600;
       margin-bottom: 0.5rem;
     }
 
-    .footer-link {
+    .footer-link{
       display: block;
       text-decoration: none;
       color: #6c757d;
       margin-bottom: 0.25rem;
     }
 
-    .footer-link:hover {
+    .footer-link:hover{
       color: #0d6efd;
     }
 
-    /* NEW: About top layout */
-    .about-top {
+    /* About top layout */
+    .about-top{
       max-width: 980px;
       margin: 0 auto;
     }
-    .about-photo {
+    .about-photo{
       width: 180px;
       height: 180px;
       border-radius: 16px;
@@ -162,16 +146,16 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.08);
       background: #fff;
     }
-    .about-bullets {
+    .about-bullets{
       margin: 0;
       padding-left: 1.15rem;
       color: #6c757d;
       line-height: 1.55;
     }
-    .about-bullets li { margin-bottom: 0.45rem; }
+    .about-bullets li{ margin-bottom: 0.45rem; }
 
-    /* NEW: Category headings above each pair */
-    .pair-heading {
+    /* Category headings above each pair */
+    .pair-heading{
       margin-top: 6px;
       margin-bottom: 10px;
       font-weight: 800;
@@ -179,10 +163,61 @@
       font-size: 1.15rem;
       color: #111;
     }
-    .pair-subtext {
+    .pair-subtext{
       margin-top: -4px;
       margin-bottom: 16px;
       color: #6c757d;
+    }
+
+    /* === Click-to-play preview video (like your course preview) === */
+    .preview-video-wrap{
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.08);
+      height: 250px;          /* same height as your course cards */
+      background: #000;
+    }
+    .preview-video{
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;      /* use contain if you want black bars */
+      background: #000;
+    }
+    .preview-badge{
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      padding: 6px 10px;
+      font-size: 12px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.92);
+      color: #fff;
+      letter-spacing: 0.02em;
+      z-index: 2;
+    }
+    .preview-overlay{
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      background: rgba(0,0,0,0.25);
+      border: 0;
+      cursor: pointer;
+      z-index: 3;
+    }
+    .play-icon{
+      width: 64px;
+      height: 64px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      background: rgba(0,0,0,0.75);
+      color: #fff;
+      font-size: 26px;
+      line-height: 1;
+      border: 1px solid rgba(255,255,255,0.25);
     }
   </style>
 </head>
@@ -192,9 +227,7 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
     <div class="container hub-narrow">
       <a class="navbar-brand d-flex align-items-center" href="/">
-        <span class="navbar-brand-box border border-2 border-dark rounded-1 d-inline-flex align-items-center justify-content-center me-2">
-          VR
-        </span>
+        <span class="navbar-brand-box border border-2 border-dark rounded-1 d-inline-flex align-items-center justify-content-center me-2">VR</span>
         <span class="fw-semibold">Roadway VR</span>
       </a>
 
@@ -212,12 +245,8 @@
           <li class="nav-item"><a class="nav-link" href="/DigitalTwinsforSmartCities/">Digital Twins</a></li>
           <li class="nav-item"><a class="nav-link" href="/#apps">Open-Source Apps</a></li>
           <li class="nav-item"><a class="nav-link active" href="/about/">About</a></li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://www.youtube.com/@RoadwayVR" target="_blank" rel="noopener noreferrer">YouTube</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://github.com/RoadwayVR" target="_blank" rel="noopener noreferrer">GitHub</a>
-          </li>
+          <li class="nav-item"><a class="nav-link" href="https://www.youtube.com/@RoadwayVR" target="_blank" rel="noopener noreferrer">YouTube</a></li>
+          <li class="nav-item"><a class="nav-link" href="https://github.com/RoadwayVR" target="_blank" rel="noopener noreferrer">GitHub</a></li>
         </ul>
       </div>
     </div>
@@ -229,7 +258,6 @@
       <div class="container hub-narrow">
         <h1 class="section-title h2 text-center mb-4">About</h1>
 
-        <!-- NEW: photo left, bullets right -->
         <div class="about-top">
           <div class="row g-4 align-items-center">
             <div class="col-md-4 text-center text-md-start">
@@ -255,18 +283,24 @@
 
         <!-- ROW 1 CATEGORY -->
         <div class="pair-heading">Optimization and AI in Transportation</div>
-        <div class="pair-subtext">Selected safety and decision-support projects grounded in real-world data.</div>
+        <div class="pair-subtext">Click a card preview to play once.</div>
 
         <div class="row g-4 align-items-stretch mb-4">
 
-          <!-- Card 1: RADS -->
+          <!-- Card 1 -->
           <div class="col-lg-6">
             <div class="card card-soft h-100 overflow-hidden">
-              <div class="card-media-wrap">
-                <video class="card-media" autoplay muted loop playsinline preload="metadata" data-autoplay>
+              <div class="preview-video-wrap" data-play-once>
+                <video class="preview-video" preload="metadata" playsinline>
                   <source src="assets/video/video1.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
                 </video>
+                <div class="preview-badge">Preview</div>
+                <button class="preview-overlay" type="button" aria-label="Play video">
+                  <span class="play-icon">▶</span>
+                </button>
               </div>
+
               <div class="card-body p-4">
                 <div class="d-flex flex-wrap gap-2 align-items-center mb-3">
                   <span class="pill">PROJECT</span>
@@ -290,20 +324,26 @@
                 </ul>
 
                 <div class="d-flex flex-wrap gap-2 mt-4">
-                  <a class="btn btn-primary" href="assets/video/video1.mp4" target="_blank" rel="noopener noreferrer">Open Video</a>
+                  <a class="btn btn-outline-primary" href="assets/video/video1.mp4" target="_blank" rel="noopener noreferrer">Open Video</a>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Card 2: IoT Police Officer -->
+          <!-- Card 2 -->
           <div class="col-lg-6">
             <div class="card card-soft h-100 overflow-hidden">
-              <div class="card-media-wrap">
-                <video class="card-media" autoplay muted loop playsinline preload="metadata" data-autoplay>
+              <div class="preview-video-wrap" data-play-once>
+                <video class="preview-video" preload="metadata" playsinline>
                   <source src="assets/video/video2.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
                 </video>
+                <div class="preview-badge">Preview</div>
+                <button class="preview-overlay" type="button" aria-label="Play video">
+                  <span class="play-icon">▶</span>
+                </button>
               </div>
+
               <div class="card-body p-4">
                 <div class="d-flex flex-wrap gap-2 align-items-center mb-3">
                   <span class="pill">PROJECT</span>
@@ -327,28 +367,34 @@
                 </ul>
 
                 <div class="d-flex flex-wrap gap-2 mt-4">
-                  <a class="btn btn-primary" href="assets/video/video2.mp4" target="_blank" rel="noopener noreferrer">Open Video</a>
+                  <a class="btn btn-outline-primary" href="assets/video/video2.mp4" target="_blank" rel="noopener noreferrer">Open Video</a>
                 </div>
               </div>
             </div>
           </div>
 
-        </div><!-- /row row1 -->
+        </div><!-- /row -->
 
         <!-- ROW 2 CATEGORY -->
         <div class="pair-heading">Traffic Simulation and Smart Cities</div>
-        <div class="pair-subtext">Simulation and decision-support projects for policy, operations, and corridor strategies.</div>
+        <div class="pair-subtext">Click a card preview to play once.</div>
 
         <div class="row g-4 align-items-stretch mb-4">
 
-          <!-- Card 3: ASE Education -->
+          <!-- Card 3 -->
           <div class="col-lg-6">
             <div class="card card-soft h-100 overflow-hidden">
-              <div class="card-media-wrap">
-                <video class="card-media" autoplay muted loop playsinline preload="metadata" data-autoplay>
+              <div class="preview-video-wrap" data-play-once>
+                <video class="preview-video" preload="metadata" playsinline>
                   <source src="assets/video/video3.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
                 </video>
+                <div class="preview-badge">Preview</div>
+                <button class="preview-overlay" type="button" aria-label="Play video">
+                  <span class="play-icon">▶</span>
+                </button>
               </div>
+
               <div class="card-body p-4">
                 <div class="d-flex flex-wrap gap-2 align-items-center mb-3">
                   <span class="pill">PROJECT</span>
@@ -357,35 +403,39 @@
                   <span class="badge badge-pill rounded-pill px-3 py-2">Education</span>
                 </div>
 
-                <div class="course-title">
-                  Automated Speed Enforcement Education (Ontario, Canada)
-                </div>
+                <div class="course-title">Automated Speed Enforcement Education (Ontario, Canada)</div>
 
                 <div class="course-subtitle">
                   AI-assisted analysis of public feedback to identify driver misconceptions and build targeted education videos.
                 </div>
 
                 <ul class="course-list">
-                  <li>Collects and analyzes public comments to identify frequent driver errors</li>
-                  <li>Builds topic-based educational videos (incorrect vs correct behavior)</li>
-                  <li>Supports evidence-informed community safety campaigns</li>
+                  <li>Identifies frequent driver errors and misconceptions</li>
+                  <li>Builds topic-based educational videos</li>
+                  <li>Supports evidence-informed safety campaigns</li>
                 </ul>
 
                 <div class="d-flex flex-wrap gap-2 mt-4">
-                  <a class="btn btn-primary" href="assets/video/video3.mp4" target="_blank" rel="noopener noreferrer">Open Video</a>
+                  <a class="btn btn-outline-primary" href="assets/video/video3.mp4" target="_blank" rel="noopener noreferrer">Open Video</a>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Card 4: Freight Platform -->
+          <!-- Card 4 -->
           <div class="col-lg-6">
             <div class="card card-soft h-100 overflow-hidden">
-              <div class="card-media-wrap">
-                <video class="card-media" autoplay muted loop playsinline preload="metadata" data-autoplay>
+              <div class="preview-video-wrap" data-play-once>
+                <video class="preview-video" preload="metadata" playsinline>
                   <source src="assets/video/video4.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
                 </video>
+                <div class="preview-badge">Preview</div>
+                <button class="preview-overlay" type="button" aria-label="Play video">
+                  <span class="play-icon">▶</span>
+                </button>
               </div>
+
               <div class="card-body p-4">
                 <div class="d-flex flex-wrap gap-2 align-items-center mb-3">
                   <span class="pill">PROJECT</span>
@@ -403,34 +453,40 @@
                 </div>
 
                 <ul class="course-list">
-                  <li>Assesses intelligent lane utilization strategies for freight operations</li>
+                  <li>Assesses intelligent lane utilization for freight operations</li>
                   <li>Visualizes infrastructure context and traffic behavior in 3D</li>
                   <li>Developed with the Regional Municipality of Durham</li>
                 </ul>
 
                 <div class="d-flex flex-wrap gap-2 mt-4">
-                  <a class="btn btn-primary" href="assets/video/video4.mp4" target="_blank" rel="noopener noreferrer">Open Video</a>
+                  <a class="btn btn-outline-primary" href="assets/video/video4.mp4" target="_blank" rel="noopener noreferrer">Open Video</a>
                 </div>
               </div>
             </div>
           </div>
 
-        </div><!-- /row row2 -->
+        </div><!-- /row -->
 
         <!-- ROW 3 CATEGORY -->
         <div class="pair-heading">Virtual Reality and 3D Visualization</div>
-        <div class="pair-subtext">Open-source and VR tools that connect simulation outputs to immersive 3D environments.</div>
+        <div class="pair-subtext">Click a card preview to play once.</div>
 
         <div class="row g-4 align-items-stretch">
 
-          <!-- Card 5: Sumo2Unity -->
+          <!-- Card 5 -->
           <div class="col-lg-6">
             <div class="card card-soft h-100 overflow-hidden">
-              <div class="card-media-wrap">
-                <video class="card-media" autoplay muted loop playsinline preload="metadata" data-autoplay>
+              <div class="preview-video-wrap" data-play-once>
+                <video class="preview-video" preload="metadata" playsinline>
                   <source src="assets/video/video5.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
                 </video>
+                <div class="preview-badge">Preview</div>
+                <button class="preview-overlay" type="button" aria-label="Play video">
+                  <span class="play-icon">▶</span>
+                </button>
               </div>
+
               <div class="card-body p-4">
                 <div class="d-flex flex-wrap gap-2 align-items-center mb-3">
                   <span class="pill">TOOL</span>
@@ -447,26 +503,32 @@
 
                 <ul class="course-list">
                   <li>Integrates SUMO and Unity for co-simulation</li>
-                  <li>Includes 3D models of vehicles, signals, and road configurations</li>
-                  <li>Supports a realistic simulator vehicle setup and dynamics</li>
+                  <li>Includes vehicles, signals, and road configurations</li>
+                  <li>Supports a realistic simulator vehicle setup</li>
                 </ul>
 
                 <div class="d-flex flex-wrap gap-2 mt-4">
-                  <a class="btn btn-primary" href="assets/video/video5.mp4" target="_blank" rel="noopener noreferrer">Open Video</a>
+                  <a class="btn btn-outline-primary" href="assets/video/video5.mp4" target="_blank" rel="noopener noreferrer">Open Video</a>
                   <a class="btn btn-outline-primary" href="https://github.com/RoadwayVR" target="_blank" rel="noopener noreferrer">GitHub</a>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Card 6: Vissim Unity VR -->
+          <!-- Card 6 -->
           <div class="col-lg-6">
             <div class="card card-soft h-100 overflow-hidden">
-              <div class="card-media-wrap">
-                <video class="card-media" autoplay muted loop playsinline preload="metadata" data-autoplay>
+              <div class="preview-video-wrap" data-play-once>
+                <video class="preview-video" preload="metadata" playsinline>
                   <source src="assets/video/video6.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
                 </video>
+                <div class="preview-badge">Preview</div>
+                <button class="preview-overlay" type="button" aria-label="Play video">
+                  <span class="play-icon">▶</span>
+                </button>
               </div>
+
               <div class="card-body p-4">
                 <div class="d-flex flex-wrap gap-2 align-items-center mb-3">
                   <span class="pill">TOOL</span>
@@ -490,15 +552,14 @@
                 </ul>
 
                 <div class="d-flex flex-wrap gap-2 mt-4">
-                  <a class="btn btn-primary" href="assets/video/video6.mp4" target="_blank" rel="noopener noreferrer">Open Video</a>
+                  <a class="btn btn-outline-primary" href="assets/video/video6.mp4" target="_blank" rel="noopener noreferrer">Open Video</a>
                 </div>
               </div>
             </div>
           </div>
 
-        </div><!-- /row row3 -->
-
-      </div><!-- /container -->
+        </div><!-- /row -->
+      </div>
     </section>
   </main>
 
@@ -508,9 +569,7 @@
       <div class="row gy-4">
         <div class="col-md-4">
           <div class="d-flex align-items-center mb-2">
-            <span class="navbar-brand-box border border-2 border-dark rounded-1 d-inline-flex align-items-center justify-content-center me-2">
-              VR
-            </span>
+            <span class="navbar-brand-box border border-2 border-dark rounded-1 d-inline-flex align-items-center justify-content-center me-2">VR</span>
             <span class="fw-semibold">Roadway VR</span>
           </div>
           <p class="mb-0">Open course materials for transportation and urban mobility education.</p>
@@ -539,12 +598,39 @@
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
     crossorigin="anonymous"></script>
 
-  <!-- Autoplay helper -->
+  <!-- Click-to-play once (then reset) -->
   <script>
     window.addEventListener("load", function () {
-      document.querySelectorAll("video[data-autoplay]").forEach(v => {
-        const p = v.play();
-        if (p && typeof p.catch === "function") p.catch(() => {});
+      document.querySelectorAll("[data-play-once]").forEach((wrap) => {
+        const video = wrap.querySelector("video");
+        const overlay = wrap.querySelector(".preview-overlay");
+
+        const showOverlay = () => overlay.classList.remove("d-none");
+        const hideOverlay = () => overlay.classList.add("d-none");
+
+        overlay.addEventListener("click", async (e) => {
+          e.preventDefault();
+          try {
+            // if you ever want sound after click, set: video.muted = false;
+            await video.play();
+            hideOverlay();
+          } catch (err) {
+            showOverlay();
+          }
+        });
+
+        video.addEventListener("ended", () => {
+          video.currentTime = 0;
+          showOverlay();
+        });
+
+        // Optional: tap video to pause and show overlay
+        video.addEventListener("click", () => {
+          if (!video.paused) {
+            video.pause();
+            showOverlay();
+          }
+        });
       });
     });
   </script>
