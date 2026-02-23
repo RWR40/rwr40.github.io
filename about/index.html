@@ -5,32 +5,206 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>About | RWR40</title>
 
-  <!-- Optional but good for SEO -->
-  <meta name="description" content="About RoadwayVR / RWR40: tutorials and learning materials for SUMO and traffic simulation." />
+  <meta name="description" content="About RoadwayVR / RWR40: AI, simulation, and VR/3D visualization projects for transportation planning and smart cities." />
   <link rel="canonical" href="https://roadwayvr.com/about/" />
 
-  <!-- If your site uses a shared stylesheet in /assets, keep this -->
   <link rel="stylesheet" href="../assets/style.css" />
+
+  <!-- Page-only styles (safe to keep even if style.css changes) -->
+  <style>
+    .about-grid { display: grid; gap: 16px; margin-top: 18px; }
+    .card {
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+    }
+    .card h2 { margin: 0 0 6px; font-size: 20px; }
+    .subtitle { margin: 0 0 12px; opacity: 0.85; }
+    .pills { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 14px; }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      border: 1px solid rgba(0,0,0,0.12);
+      background: rgba(0,0,0,0.02);
+      white-space: nowrap;
+    }
+    .projects { margin: 0; padding-left: 18px; }
+    .projects li { margin: 8px 0; }
+    .proj-title { font-weight: 600; }
+    .video {
+      margin-top: 12px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.10);
+      background: #000;
+    }
+    .video video { width: 100%; height: auto; display: block; }
+    .video-caption { margin: 8px 0 0; font-size: 13px; opacity: 0.8; }
+  </style>
 </head>
 
 <body>
-  <!-- If you have a header/nav on index.html, copy it here too -->
   <main class="container" style="max-width: 960px; margin: 0 auto; padding: 24px;">
     <h1>About</h1>
 
     <p>
-      <!-- Paste your About text here -->
-      RoadwayVR / RWR40 is an open learning hub for SUMO, traffic simulation, and digital twins for smart cities...
+      Founder of <strong>RoadwayVR Course Hub</strong>, an open-learning platform for transportation planning,
+      simulation, and smart cities. I hold a <strong>BSc/MSc in Industrial Engineering (Optimization)</strong>
+      and a <strong>PhD plus Postdoctoral training in Transportation Engineering</strong>. My work connects
+      <strong>AI</strong>, <strong>traffic simulation</strong>, and <strong>immersive 3D visualization</strong>
+      to support safer and more efficient transportation systems.
     </p>
 
-    <p>
+    <section class="about-grid">
+
+      <!-- 1) Optimization and AI -->
+      <article class="card" id="opt-ai">
+        <h2>Optimization and AI in Transportation</h2>
+        <p class="subtitle">
+          Data-driven safety and decision-support methods grounded in real-world sensing and applied modeling.
+        </p>
+
+        <div class="pills">
+          <span class="pill">OPT-AI</span>
+          <span class="pill">Safety Analytics</span>
+          <span class="pill">Decision Support</span>
+          <span class="pill">Field Data</span>
+        </div>
+
+        <ul class="projects">
+          <li>
+            <span class="proj-title">Next-Generation Roadside Animal Detection (Highway Trans-Canada 1, British Columbia):</span>
+            Real-time risk estimation using a fuzzy rule-based model to deliver graded warnings and support V2I communication.
+          </li>
+          <li>
+            <span class="proj-title">IoT Protection System for Police Officers (Highway 416, Ontario):</span>
+            Risk analysis combining distance, speeding, and sight distance to generate early collision-risk warnings.
+          </li>
+        </ul>
+
+        <div class="video">
+          <video controls preload="metadata">
+            <source src="./assets/video/video1.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <p class="video-caption">Video 1: Optimization and AI projects overview</p>
+      </article>
+
+      <!-- 2) Traffic Simulation and Smart Cities -->
+      <article class="card" id="sim-smartcities">
+        <h2>Traffic Simulation and Smart Cities</h2>
+        <p class="subtitle">
+          Simulation workflows for evaluating planning alternatives, policy, and operations with clear performance measures.
+        </p>
+
+        <div class="pills">
+          <span class="pill">SIM</span>
+          <span class="pill">SUMO</span>
+          <span class="pill">PTV Vissim</span>
+          <span class="pill">Planning Applications</span>
+        </div>
+
+        <ul class="projects">
+          <li>
+            <span class="proj-title">Automated Speed Enforcement Education (Ontario):</span>
+            AI-assisted analysis of public feedback to identify common driver errors and produce targeted safety education videos.
+          </li>
+          <li>
+            <span class="proj-title">Freight Transportation Visualization and Evaluation Platform (Highway 401, Durham Region):</span>
+            Simulation-based evaluation and 3D visualization of truck-friendly lane strategies using Vissim outputs and Unity.
+          </li>
+        </ul>
+
+        <div class="video">
+          <video controls preload="metadata">
+            <source src="./assets/video/video2.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <p class="video-caption">Video 2: Traffic simulation and smart city workflows</p>
+      </article>
+
+      <!-- 3) Virtual Reality and 3D Visualization -->
+      <article class="card" id="vr-3d">
+        <h2>Virtual Reality and 3D Visualization</h2>
+        <p class="subtitle">
+          Interactive 3D and VR tools that make transportation systems easier to understand, test, and communicate.
+        </p>
+
+        <div class="pills">
+          <span class="pill">VR-3D</span>
+          <span class="pill">Unity</span>
+          <span class="pill">Co-simulation</span>
+          <span class="pill">Visualization</span>
+        </div>
+
+        <ul class="projects">
+          <li>
+            <span class="proj-title">Sumo2Unity (Open Source):</span>
+            Co-simulation toolkit integrating SUMO and Unity, including a ready 3D environment, vehicles, signals, and simulator vehicle setup.
+          </li>
+          <li>
+            <span class="proj-title">Vissim–Unity VR Human-in-the-Loop Driving Simulator (Highway 401, Durham Region):</span>
+            High-frequency trajectory exchange enabling VR driving experiments with steering wheel and pedals for controlled evaluation of corridor and lane strategies.
+          </li>
+        </ul>
+
+        <div class="video">
+          <video controls preload="metadata">
+            <source src="./assets/video/video3.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <p class="video-caption">Video 3: VR and 3D visualization demos</p>
+      </article>
+
+      <!-- Optional extra video cards (video4–video6) if you want more clips on the About page -->
+      <article class="card" id="more-videos">
+        <h2>More Videos</h2>
+        <p class="subtitle">Additional demos and short clips.</p>
+
+        <div class="pills">
+          <span class="pill">VIDEO</span>
+          <span class="pill">Demos</span>
+          <span class="pill">Short Clips</span>
+          <span class="pill">RoadwayVR</span>
+        </div>
+
+        <div class="video">
+          <video controls preload="metadata">
+            <source src="./assets/video/video4.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <p class="video-caption">Video 4</p>
+
+        <div class="video" style="margin-top:12px;">
+          <video controls preload="metadata">
+            <source src="./assets/video/video5.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <p class="video-caption">Video 5</p>
+
+        <div class="video" style="margin-top:12px;">
+          <video controls preload="metadata">
+            <source src="./assets/video/video6.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <p class="video-caption">Video 6</p>
+      </article>
+
+    </section>
+
+    <p style="margin-top: 22px;">
       <a href="../">← Back to Home</a>
     </p>
   </main>
 
-  <!-- If you have GoatCounter (or other analytics) on index.html, copy the same script here -->
-  <!-- Example:
-  <script data-goatcounter="https://YOUR.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
-  -->
+  <!-- Copy your analytics script here if needed -->
 </body>
 </html>
