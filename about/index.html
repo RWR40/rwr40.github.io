@@ -1,210 +1,461 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>About | RWR40</title>
+  <meta charset="utf-8">
+  <title>About | Roadway VR</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <meta name="description" content="About RoadwayVR / RWR40: AI, simulation, and VR/3D visualization projects for transportation planning and smart cities." />
-  <link rel="canonical" href="https://roadwayvr.com/about/" />
+  <meta name="description" content="About RoadwayVR: Optimization and AI, Transportation Simulation, and VR/3D Visualization tools and projects." />
+  <link rel="canonical" href="https://rwr40.github.io/about/" />
 
+  <!-- Bootstrap 5 (same as your homepage) -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    crossorigin="anonymous">
+
+  <!-- If you want to keep your shared stylesheet -->
   <link rel="stylesheet" href="../assets/style.css" />
 
-  <!-- Page-only styles (safe to keep even if style.css changes) -->
   <style>
-    .about-grid { display: grid; gap: 16px; margin-top: 18px; }
-    .card {
-      background: #fff;
-      border: 1px solid rgba(0,0,0,0.08);
-      border-radius: 14px;
-      padding: 18px;
-      box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      scroll-behavior: smooth;
+      background-color: #fafafa;
     }
-    .card h2 { margin: 0 0 6px; font-size: 20px; }
-    .subtitle { margin: 0 0 12px; opacity: 0.85; }
-    .pills { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 14px; }
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      padding: 6px 10px;
-      border-radius: 999px;
-      font-size: 12px;
-      border: 1px solid rgba(0,0,0,0.12);
-      background: rgba(0,0,0,0.02);
-      white-space: nowrap;
+
+    /* NAVBAR */
+    .navbar-brand-box {
+      width: 32px;
+      height: 32px;
+      font-size: 0.8rem;
+      font-weight: 700;
     }
-    .projects { margin: 0; padding-left: 18px; }
-    .projects li { margin: 8px 0; }
-    .proj-title { font-weight: 600; }
-    .video {
-      margin-top: 12px;
-      border-radius: 12px;
+
+    .section-title {
+      font-family: "Georgia", "Times New Roman", serif;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+    }
+
+    .card-soft{
+      border: 1px solid rgba(0,0,0,0.06);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      border-radius: 16px;
+    }
+
+    /* Media area (video) same size as course-card image */
+    .card-media-wrap{
+      width: 100%;
+      height: 250px;
       overflow: hidden;
-      border: 1px solid rgba(0,0,0,0.10);
+      border-top-left-radius: 16px;
+      border-top-right-radius: 16px;
       background: #000;
     }
-    .video video { width: 100%; height: auto; display: block; }
-    .video-caption { margin: 8px 0 0; font-size: 13px; opacity: 0.8; }
+    .card-media{
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .pill{
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(109,40,210,0.08);
+      border: 1px solid rgba(109,40,210,0.22);
+      color: #4c1d95;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .badge-pill{
+      background-color: #6D28D2 !important;
+      color: #ffffff !important;
+      border: 1px solid rgba(255,255,255,0.25) !important;
+    }
+
+    .course-title{
+      font-weight: 800;
+      font-size: 1.2rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .course-subtitle{
+      color: #6c757d;
+      margin-bottom: 0.75rem;
+    }
+
+    .course-list{
+      margin: 0;
+      padding-left: 1.15rem;
+    }
+    .course-list li{
+      margin-bottom: 0.35rem;
+      line-height: 1.35;
+    }
+
+    .btn-primary{
+      background-color: #6D28D2 !important;
+      border-color: #6D28D2 !important;
+      border-radius: 999px;
+      padding: 8px 14px;
+    }
+    .btn-primary:hover{
+      background-color: #5B21B6 !important;
+      border-color: #5B21B6 !important;
+    }
+
+    .btn-outline-primary{
+      color: #6D28D2 !important;
+      border-color: rgba(109,40,210,0.45) !important;
+      background: rgba(109,40,210,0.06) !important;
+      border-radius: 999px;
+      padding: 8px 14px;
+    }
+    .btn-outline-primary:hover{
+      color: #fff !important;
+      background: #6D28D2 !important;
+      border-color: #6D28D2 !important;
+    }
+
+    /* Same readability width you used on home */
+    .hub-narrow{
+      max-width: 1120px;
+    }
+
+    footer {
+      border-top: 1px solid #ddd;
+      background-color: #fff;
+    }
+
+    .footer-title {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-link {
+      display: block;
+      text-decoration: none;
+      color: #6c757d;
+      margin-bottom: 0.25rem;
+    }
+
+    .footer-link:hover {
+      color: #0d6efd;
+    }
   </style>
 </head>
 
 <body>
-  <main class="container" style="max-width: 960px; margin: 0 auto; padding: 24px;">
-    <h1>About</h1>
+  <!-- NAVBAR (same structure as your homepage) -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+    <div class="container hub-narrow">
+      <a class="navbar-brand d-flex align-items-center" href="/">
+        <span class="navbar-brand-box border border-2 border-dark rounded-1 d-inline-flex align-items-center justify-content-center me-2">
+          VR
+        </span>
+        <span class="fw-semibold">Roadway VR</span>
+      </a>
 
-    <p>
-      Founder of <strong>RoadwayVR Course Hub</strong>, an open-learning platform for transportation planning,
-      simulation, and smart cities. I hold a <strong>BSc/MSc in Industrial Engineering (Optimization)</strong>
-      and a <strong>PhD plus Postdoctoral training in Transportation Engineering</strong>. My work connects
-      <strong>AI</strong>, <strong>traffic simulation</strong>, and <strong>immersive 3D visualization</strong>
-      to support safer and more efficient transportation systems.
-    </p>
+      <button class="navbar-toggler" type="button"
+              data-bs-toggle="collapse" data-bs-target="#mainNav"
+              aria-controls="mainNav" aria-expanded="false"
+              aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <section class="about-grid">
-
-      <!-- 1) Optimization and AI -->
-      <article class="card" id="opt-ai">
-        <h2>Optimization and AI in Transportation</h2>
-        <p class="subtitle">
-          Data-driven safety and decision-support methods grounded in real-world sensing and applied modeling.
-        </p>
-
-        <div class="pills">
-          <span class="pill">OPT-AI</span>
-          <span class="pill">Safety Analytics</span>
-          <span class="pill">Decision Support</span>
-          <span class="pill">Field Data</span>
-        </div>
-
-        <ul class="projects">
-          <li>
-            <span class="proj-title">Next-Generation Roadside Animal Detection (Highway Trans-Canada 1, British Columbia):</span>
-            Real-time risk estimation using a fuzzy rule-based model to deliver graded warnings and support V2I communication.
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="/">Course Hub</a></li>
+          <li class="nav-item"><a class="nav-link" href="/TrafficSimulationforPlanningApplications/">Traffic Simulation</a></li>
+          <li class="nav-item"><a class="nav-link" href="/DigitalTwinsforSmartCities/">Digital Twins</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#apps">Open-Source Apps</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/about/">About</a></li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://www.youtube.com/@RoadwayVR" target="_blank" rel="noopener noreferrer">YouTube</a>
           </li>
-          <li>
-            <span class="proj-title">IoT Protection System for Police Officers (Highway 416, Ontario):</span>
-            Risk analysis combining distance, speeding, and sight distance to generate early collision-risk warnings.
+          <li class="nav-item">
+            <a class="nav-link" href="https://github.com/RoadwayVR" target="_blank" rel="noopener noreferrer">GitHub</a>
           </li>
         </ul>
+      </div>
+    </div>
+  </nav>
 
-        <div class="video">
-          <video controls preload="metadata">
-            <source src="./assets/video/video1.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-        </div>
-        <p class="video-caption">Video 1: Optimization and AI projects overview</p>
-      </article>
+  <main>
+    <!-- ABOUT HEADER -->
+    <section class="py-5 bg-white">
+      <div class="container hub-narrow">
+        <h1 class="section-title h2 text-center mb-3">About</h1>
 
-      <!-- 2) Traffic Simulation and Smart Cities -->
-      <article class="card" id="sim-smartcities">
-        <h2>Traffic Simulation and Smart Cities</h2>
-        <p class="subtitle">
-          Simulation workflows for evaluating planning alternatives, policy, and operations with clear performance measures.
+        <p class="lead text-center text-muted mb-0" style="max-width: 900px; margin: 0 auto;">
+          Founder of <strong>RoadwayVR Course Hub</strong>, an open-learning platform for transportation planning,
+          simulation, and smart cities. I hold a <strong>BSc/MSc in Industrial Engineering (Optimization)</strong> and a
+          <strong>PhD plus Postdoctoral training in Transportation Engineering</strong>. My work connects
+          <strong>AI</strong>, <strong>traffic simulation</strong>, and <strong>immersive 3D visualization</strong> to support
+          safer and more efficient transportation systems.
         </p>
-
-        <div class="pills">
-          <span class="pill">SIM</span>
-          <span class="pill">SUMO</span>
-          <span class="pill">PTV Vissim</span>
-          <span class="pill">Planning Applications</span>
-        </div>
-
-        <ul class="projects">
-          <li>
-            <span class="proj-title">Automated Speed Enforcement Education (Ontario):</span>
-            AI-assisted analysis of public feedback to identify common driver errors and produce targeted safety education videos.
-          </li>
-          <li>
-            <span class="proj-title">Freight Transportation Visualization and Evaluation Platform (Highway 401, Durham Region):</span>
-            Simulation-based evaluation and 3D visualization of truck-friendly lane strategies using Vissim outputs and Unity.
-          </li>
-        </ul>
-
-        <div class="video">
-          <video controls preload="metadata">
-            <source src="./assets/video/video2.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-        </div>
-        <p class="video-caption">Video 2: Traffic simulation and smart city workflows</p>
-      </article>
-
-      <!-- 3) Virtual Reality and 3D Visualization -->
-      <article class="card" id="vr-3d">
-        <h2>Virtual Reality and 3D Visualization</h2>
-        <p class="subtitle">
-          Interactive 3D and VR tools that make transportation systems easier to understand, test, and communicate.
-        </p>
-
-        <div class="pills">
-          <span class="pill">VR-3D</span>
-          <span class="pill">Unity</span>
-          <span class="pill">Co-simulation</span>
-          <span class="pill">Visualization</span>
-        </div>
-
-        <ul class="projects">
-          <li>
-            <span class="proj-title">Sumo2Unity (Open Source):</span>
-            Co-simulation toolkit integrating SUMO and Unity, including a ready 3D environment, vehicles, signals, and simulator vehicle setup.
-          </li>
-          <li>
-            <span class="proj-title">Vissim–Unity VR Human-in-the-Loop Driving Simulator (Highway 401, Durham Region):</span>
-            High-frequency trajectory exchange enabling VR driving experiments with steering wheel and pedals for controlled evaluation of corridor and lane strategies.
-          </li>
-        </ul>
-
-        <div class="video">
-          <video controls preload="metadata">
-            <source src="./assets/video/video3.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-        </div>
-        <p class="video-caption">Video 3: VR and 3D visualization demos</p>
-      </article>
-
-      <!-- Optional extra video cards (video4–video6) if you want more clips on the About page -->
-      <article class="card" id="more-videos">
-        <h2>More Videos</h2>
-        <p class="subtitle">Additional demos and short clips.</p>
-
-        <div class="pills">
-          <span class="pill">VIDEO</span>
-          <span class="pill">Demos</span>
-          <span class="pill">Short Clips</span>
-          <span class="pill">RoadwayVR</span>
-        </div>
-
-        <div class="video">
-          <video controls preload="metadata">
-            <source src="./assets/video/video4.mp4" type="video/mp4" />
-          </video>
-        </div>
-        <p class="video-caption">Video 4</p>
-
-        <div class="video" style="margin-top:12px;">
-          <video controls preload="metadata">
-            <source src="./assets/video/video5.mp4" type="video/mp4" />
-          </video>
-        </div>
-        <p class="video-caption">Video 5</p>
-
-        <div class="video" style="margin-top:12px;">
-          <video controls preload="metadata">
-            <source src="./assets/video/video6.mp4" type="video/mp4" />
-          </video>
-        </div>
-        <p class="video-caption">Video 6</p>
-      </article>
-
+      </div>
     </section>
 
-    <p style="margin-top: 22px;">
-      <a href="../">← Back to Home</a>
-    </p>
+    <!-- 6 CARDS (2 per row, 3 rows) -->
+    <section class="py-5">
+      <div class="container hub-narrow">
+
+        <div class="row g-4 align-items-stretch">
+
+          <!-- Card 1 -->
+          <div class="col-lg-6">
+            <div class="card card-soft h-100 overflow-hidden">
+              <div class="card-media-wrap">
+                <video class="card-media" autoplay muted loop playsinline preload="metadata" data-autoplay>
+                  <source src="assets/video/video1.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="card-body p-4">
+                <div class="d-flex flex-wrap gap-2 align-items-center mb-3">
+                  <span class="pill">OPT-AI</span>
+                  <span class="badge badge-pill rounded-pill px-3 py-2">Optimization</span>
+                  <span class="badge badge-pill rounded-pill px-3 py-2">AI</span>
+                  <span class="badge badge-pill rounded-pill px-3 py-2">Safety Analytics</span>
+                </div>
+                <div class="course-title">Optimization and AI in Transportation</div>
+                <div class="course-subtitle">
+                  Data-driven safety and decision support grounded in real-world sensing.
+                </div>
+                <ul class="course-list">
+                  <li>Risk estimation and early-warning systems</li>
+                  <li>Fuzzy rule-based decision models</li>
+                  <li>AI workflows from data to deployment</li>
+                </ul>
+                <div class="d-flex flex-wrap gap-2 mt-4">
+                  <a class="btn btn-primary" href="#projects">See Projects</a>
+                  <a class="btn btn-outline-primary" href="assets/video/video1.mp4" target="_blank" rel="noopener noreferrer">Open Video</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="col-lg-6">
+            <div class="card card-soft h-100 overflow-hidden">
+              <div class="card-media-wrap">
+                <video class="card-media" autoplay muted loop playsinline preload="metadata" data-autoplay>
+                  <source src="assets/video/video2.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="card-body p-4">
+                <div class="d-flex flex-wrap gap-2 align-items-center mb-3">
+                  <span class="pill">SIM</span>
+                  <span class="badge badge-pill rounded-pill px-3 py-2">SUMO</span>
+                  <span class="badge badge-pill rounded-pill px-3 py-2">PTV Vissim</span>
+                  <span class="badge badge-pill rounded-pill px-3 py-2">Smart Cities</span>
+                </div>
+                <div class="course-title">Traffic Simulation and Smart Cities</div>
+                <div class="course-subtitle">
+                  Testing planning alternatives, policy, and operations with clear performance measures.
+                </div>
+                <ul class="course-list">
+                  <li>Scenario testing and alternatives analysis</li>
+                  <li>Planning KPIs (delay, queues, LOS, emissions)</li>
+                  <li>Simulation results communicated through visualization</li>
+                </ul>
+                <div class="d-flex flex-wrap gap-2 mt-4">
+                  <a class="btn btn-primary" href="#projects">See Projects</a>
+                  <a class="btn btn-outline-primary" href="assets/video/video2.mp4" target="_blank" rel="noopener noreferrer">Open Video</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="col-lg-6">
+            <div class="card card-soft h-100 overflow-hidden">
+              <div class="card-media-wrap">
+                <video class="card-media" autoplay muted loop playsinline preload="metadata" data-autoplay>
+                  <source src="assets/video/video3.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="card-body p-4">
+                <div class="d-flex flex-wrap gap-2 align-items-center mb-3">
+                  <span class="pill">VR-3D</span>
+                  <span class="badge badge-pill rounded-pill px-3 py-2">Unity</span>
+                  <span class="badge badge-pill rounded-pill px-3 py-2">Co-simulation</span>
+                  <span class="badge badge-pill rounded-pill px-3 py-2">Visualization</span>
+                </div>
+                <div class="course-title">Virtual Reality and 3D Visualization</div>
+                <div class="course-subtitle">
+                  Turning transportation analysis into interactive, immersive understanding.
+                </div>
+                <ul class="course-list">
+                  <li>Interactive 3D environments for planning</li>
+                  <li>VR experiments and human-in-the-loop studies</li>
+                  <li>Open-source educational visualization tools</li>
+                </ul>
+                <div class="d-flex flex-wrap gap-2 mt-4">
+                  <a class="btn btn-primary" href="#projects">See Projects</a>
+                  <a class="btn btn-outline-primary" href="assets/video/video3.mp4" target="_blank" rel="noopener noreferrer">Open Video</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="col-lg-6" id="projects">
+            <div class="card card-soft h-100 overflow-hidden">
+              <div class="card-media-wrap">
+                <video class="card-media" autoplay muted loop playsinline preload="metadata" data-autoplay>
+                  <source src="assets/video/video4.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="card-body p-4">
+                <div class="d-flex flex-wrap gap-2 align-items-center mb-3">
+                  <span class="pill">PROJECT</span>
+                  <span class="badge badge-pill rounded-pill px-3 py-2">Road Safety</span>
+                  <span class="badge badge-pill rounded-pill px-3 py-2">RADS</span>
+                  <span class="badge badge-pill rounded-pill px-3 py-2">V2I</span>
+                </div>
+                <div class="course-title">Roadside Animal Detection System</div>
+                <div class="course-subtitle">
+                  Highway Trans-Canada 1, British Columbia
+                </div>
+                <ul class="course-list">
+                  <li>Real-time threat estimation using fuzzy logic</li>
+                  <li>Graded warnings instead of constant alerts</li>
+                  <li>Supports direct vehicle communication (V2I)</li>
+                </ul>
+                <div class="d-flex flex-wrap gap-2 mt-4">
+                  <a class="btn btn-primary" href="assets/video/video4.mp4" target="_blank" rel="noopener noreferrer">Watch</a>
+                  <a class="btn btn-outline-primary" href="/#apps">Explore Tools</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="col-lg-6">
+            <div class="card card-soft h-100 overflow-hidden">
+              <div class="card-media-wrap">
+                <video class="card-media" autoplay muted loop playsinline preload="metadata" data-autoplay>
+                  <source src="assets/video/video5.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="card-body p-4">
+                <div class="d-flex flex-wrap gap-2 align-items-center mb-3">
+                  <span class="pill">PROJECT</span>
+                  <span class="badge badge-pill rounded-pill px-3 py-2">Smart City</span>
+                  <span class="badge badge-pill rounded-pill px-3 py-2">ASE</span>
+                  <span class="badge badge-pill rounded-pill px-3 py-2">Education</span>
+                </div>
+                <div class="course-title">Automated Speed Enforcement Education</div>
+                <div class="course-subtitle">
+                  Ontario, Canada
+                </div>
+                <ul class="course-list">
+                  <li>AI-assisted analysis of driver misconceptions</li>
+                  <li>Topic-based educational video series</li>
+                  <li>Supports evidence-informed safety campaigns</li>
+                </ul>
+                <div class="d-flex flex-wrap gap-2 mt-4">
+                  <a class="btn btn-primary" href="assets/video/video5.mp4" target="_blank" rel="noopener noreferrer">Watch</a>
+                  <a class="btn btn-outline-primary" href="https://www.youtube.com/@RoadwayVR" target="_blank" rel="noopener noreferrer">YouTube</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="col-lg-6">
+            <div class="card card-soft h-100 overflow-hidden">
+              <div class="card-media-wrap">
+                <video class="card-media" autoplay muted loop playsinline preload="metadata" data-autoplay>
+                  <source src="assets/video/video6.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="card-body p-4">
+                <div class="d-flex flex-wrap gap-2 align-items-center mb-3">
+                  <span class="pill">TOOL</span>
+                  <span class="badge badge-pill rounded-pill px-3 py-2">Vissim ↔ Unity</span>
+                  <span class="badge badge-pill rounded-pill px-3 py-2">VR</span>
+                  <span class="badge badge-pill rounded-pill px-3 py-2">Human-in-the-Loop</span>
+                </div>
+                <div class="course-title">Vissim–Unity VR Human-in-the-Loop Driving Simulator</div>
+                <div class="course-subtitle">
+                  Highway 401, Durham Region
+                </div>
+                <ul class="course-list">
+                  <li>High-frequency trajectory exchange for realism</li>
+                  <li>VR headset with steering wheel and pedals</li>
+                  <li>Controlled evaluation of corridor and lane strategies</li>
+                </ul>
+                <div class="d-flex flex-wrap gap-2 mt-4">
+                  <a class="btn btn-primary" href="assets/video/video6.mp4" target="_blank" rel="noopener noreferrer">Watch</a>
+                  <a class="btn btn-outline-primary" href="https://github.com/RoadwayVR" target="_blank" rel="noopener noreferrer">GitHub</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /row -->
+
+      </div><!-- /container -->
+    </section>
   </main>
 
-  <!-- Copy your analytics script here if needed -->
+  <!-- FOOTER (optional, same idea as home) -->
+  <footer class="py-5">
+    <div class="container small hub-narrow">
+      <div class="row gy-4">
+        <div class="col-md-4">
+          <div class="d-flex align-items-center mb-2">
+            <span class="navbar-brand-box border border-2 border-dark rounded-1 d-inline-flex align-items-center justify-content-center me-2">
+              VR
+            </span>
+            <span class="fw-semibold">Roadway VR</span>
+          </div>
+          <p class="mb-0">
+            Open course materials for transportation and urban mobility education.
+          </p>
+        </div>
+
+        <div class="col-md-4">
+          <div class="footer-title">Pages</div>
+          <a href="/" class="footer-link">Course Hub</a>
+          <a href="/TrafficSimulationforPlanningApplications/" class="footer-link">Traffic Simulation (RWR4015)</a>
+          <a href="/DigitalTwinsforSmartCities/" class="footer-link">Digital Twins (RWR4013)</a>
+          <a href="/#apps" class="footer-link">Open-Source Apps</a>
+        </div>
+
+        <div class="col-md-4">
+          <div class="footer-title">Social</div>
+          <a href="https://www.youtube.com/@RoadwayVR" target="_blank" rel="noopener noreferrer" class="footer-link">YouTube</a>
+          <a href="https://github.com/RoadwayVR" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub</a>
+          <a href="https://www.linkedin.com/in/ahmadmohammadi1441/" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    crossorigin="anonymous"></script>
+
+  <!-- Help autoplay on some browsers (still requires muted) -->
+  <script>
+    window.addEventListener("load", function () {
+      document.querySelectorAll("video[data-autoplay]").forEach(v => {
+        const playPromise = v.play();
+        if (playPromise && typeof playPromise.catch === "function") {
+          playPromise.catch(() => {});
+        }
+      });
+    });
+  </script>
 </body>
 </html>
